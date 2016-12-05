@@ -30,9 +30,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/twitter', function(err, db) {
     if (err) throw err;
     console.log("Connected to Database");
 
-    //simple json record
-    var document = {name:"David", title:"About MongoDB"};
-
     dbs = db;
 });
 
