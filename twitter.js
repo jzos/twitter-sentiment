@@ -2,11 +2,12 @@
  * Created by jaimemac on 12/4/16.
  */
 
-//var mongodb             = require('mongodb');
 var fs                  = require('fs');
+var sentiment           = require('sentiment');
+var merge               = require('merge'), original, cloned;
 
 
-var Twit = require('twit')
+var Twit = require('twit');
 
 var T = new Twit({
     consumer_key: 'zrygVD3bcdopRZLeUsRZzsfQd',
@@ -191,15 +192,23 @@ stream.on('tweet', function (tweet) {
 // https://dev.twitter.com/streaming/reference/post/statuses/filter
 
 
-var stream = T.stream('statuses/filter', { track: '#trump', language: 'en' })
+var stream = T.stream('statuses/filter', { track: '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president', language: 'en' })
 
 
 stream.on('tweet', function (tweet) {
-    console.log(tweet);
+
+    var r1              = sentiment(tweet.text);
+    var dataRecord      = merge(tweet,r1);
+
+    console.log(dataRecord);
 
     //insert record
-    dbs.collection('tweet').insert(tweet, function(err, records) {
+    dbs.collection('security').insert(dataRecord, function(err, records) {
         if (err) throw err;
         console.log("Record added as "+records.ops[0]._id);
     });
+
+
+    console.log("*************************************");
+
 })
