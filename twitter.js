@@ -48,7 +48,7 @@ T.post('statuses/update', { status: 'hello world!' }, function(err, data, respon
 //  search twitter for all tweets containing the word 'banana' since July 11, 2011
 //
 /*
-T.get('search/tweets', { q: 'trump since:2016-10-01', count: 10}, function(err, data, response) {
+T.get('search/tweets', { q: 'trump since:2016-10-01', count: 100}, function(err, data, response) {
     console.log(data)
 })
 */
@@ -68,7 +68,7 @@ T.get('followers/ids', { screen_name: 'tolga_tezel' },  function (err, data, res
 //
 T.get('account/verify_credentials', { skip_status: true })
     .catch(function (err) {
-        //console.log('caught error', err.stack)
+        console.log('caught error', err.stack)
     })
     .then(function (result) {
         // `result` is an Object with keys "data" and "resp".
@@ -192,7 +192,19 @@ stream.on('tweet', function (tweet) {
 // https://dev.twitter.com/streaming/reference/post/statuses/filter
 
 
-var stream = T.stream('statuses/filter', { track: '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president', language: 'en' })
+
+var sSecurity = '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president';
+
+var sJackInTheBox = 'brunchfast,#brunchfast,Brunch Burger';
+
+
+
+var stream = T.stream('statuses/filter', { track: sJackInTheBox, language: 'en' });
+
+
+stream.on('error', function(error) {
+    throw error;
+});
 
 
 stream.on('tweet', function (tweet) {
@@ -203,7 +215,7 @@ stream.on('tweet', function (tweet) {
     console.log(dataRecord);
 
     //insert record
-    dbs.collection('security').insert(dataRecord, function(err, records) {
+    dbs.collection('jackinthebox').insert(dataRecord, function(err, records) {
         if (err) throw err;
         console.log("Record added as "+records.ops[0]._id);
     });
@@ -212,3 +224,5 @@ stream.on('tweet', function (tweet) {
     console.log("*************************************");
 
 })
+
+
