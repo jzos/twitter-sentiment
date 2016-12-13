@@ -10,10 +10,10 @@ var merge               = require('merge'), original, cloned;
 var Twit = require('twit');
 
 var T = new Twit({
-    consumer_key: 'zrygVD3bcdopRZLeUsRZzsfQd',
-    consumer_secret: 'Xan82IfcwSdDctsidGjkRzqD0CGbQ9MMPZeaROfldDH2EYrABm',
-    access_token: '19669840-XOultZI0L1jxOXbsEW7iMHci9immcBdA8yWFFhjWj',
-    access_token_secret: '8jaun7URar2BC3JK9F7vXKKPQQsprLc1MqrnkB9VSr9Nv',
+    consumer_key: 'qphEVi498C5OGVaCKnl6QGVGy',
+    consumer_secret: '9TKbkrcVSRqefw5fQ9v8wkQtktbHOSjdy2evUzwSxjylxqACF4',
+    access_token: '19669840-EE31VHbTfidEHEhqnO2epnsaY6EqSy6XUbMBfRjkg',
+    access_token_secret: 'MyzxhVfaZKEwwIGqB6zZdMaE0zIGJsWt6q2e5WWB4QnRX',
     timeout_ms:           60*1000  // optional HTTP request timeout to apply to all requests.
 })
 
@@ -46,12 +46,34 @@ T.post('statuses/update', { status: 'hello world!' }, function(err, data, respon
 
 //
 //  search twitter for all tweets containing the word 'banana' since July 11, 2011
-//
-/*
-T.get('search/tweets', { q: 'trump since:2016-10-01', count: 100}, function(err, data, response) {
-    console.log(data)
+//  https://dev.twitter.com/rest/public/search
+
+
+
+
+T.get('search/tweets', { q: 'trump since:2016-12-07 until:2016-12-08', count: 1 }, function(err, data, response) {
+    console.log(data);
+
+    /*
+    var test = [];
+
+    test = data.statuses;
+
+    for (var i in test)
+    {
+        console.log(test[i]);
+
+        if (test[i].source.indexOf("Influe") == -1)
+        {
+
+        }
+
+    }
+    */
 })
-*/
+
+
+
 
 /*
 //
@@ -66,6 +88,12 @@ T.get('followers/ids', { screen_name: 'tolga_tezel' },  function (err, data, res
 // Twit has promise support; you can use the callback API,
 // promise API, or both at the same time.
 //
+
+
+
+
+
+
 T.get('account/verify_credentials', { skip_status: true })
     .catch(function (err) {
         console.log('caught error', err.stack)
@@ -193,18 +221,18 @@ stream.on('tweet', function (tweet) {
 
 
 
+
+/*
+
 var sSecurity = '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president';
 
-var sJackInTheBox = 'brunchfast,#brunchfast,Brunch Burger';
+//var sJackInTheBox = 'brunchfast,#brunchfast,Brunch Burger,Southwest Scrambler Plate,Homestyle Potatoes,Bacon & Egg Chicken Sandwich,Orange Cranberry Muffins,Mini Pancakes,Blood Orange Fruit Cooler,Original Iced Coffee,Coca-Cola Freestyle';
+sJackInTheBox = 'brunchfast,jack in the box, jib';
 
 
 
 var stream = T.stream('statuses/filter', { track: sJackInTheBox, language: 'en' });
 
-
-stream.on('error', function(error) {
-    throw error;
-});
 
 
 stream.on('tweet', function (tweet) {
@@ -224,5 +252,55 @@ stream.on('tweet', function (tweet) {
     console.log("*************************************");
 
 })
+
+*/
+
+
+
+/*
+
+var stream = T.stream('statuses/sample')
+
+stream.on('tweet', function (tweet) {
+    console.log(tweet)
+})
+
+
+ stream.on('disconnect', function (disconn) {
+ console.log('disconnect')
+ })
+
+ stream.on('connect', function (conn) {
+ console.log('connecting')
+ })
+
+ stream.on('reconnect', function (reconn, res, interval) {
+ console.log('reconnecting. statusCode:', res.statusCode)
+ })
+
+
+
+
+
+ stream.on('connected', function (response) {
+ console.log(response);
+ })
+
+
+ stream.on('limit', function (limitMessage) {
+ console.log(limitMessage);
+ })
+
+
+ stream.on('warning', function (warning) {
+ console.log(warning);
+ })
+
+
+ stream.on('error', function (error) {
+ console.log("error");
+ })
+
+ */
 
 

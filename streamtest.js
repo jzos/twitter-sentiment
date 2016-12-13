@@ -1,4 +1,5 @@
 
+/*
 
 var Twit = require('Twit');
 var config = {
@@ -52,3 +53,29 @@ module.exports =  function () {
         getCachedOpenStreamTweets: getCachedOpenStreamTweets
     }
 };
+
+    */
+
+
+
+
+var Twitter = require('twitter');
+
+var client = new Twitter({
+    consumer_key: 'qphEVi498C5OGVaCKnl6QGVGy',
+    consumer_secret: '9TKbkrcVSRqefw5fQ9v8wkQtktbHOSjdy2evUzwSxjylxqACF4',
+    access_token: '19669840-EE31VHbTfidEHEhqnO2epnsaY6EqSy6XUbMBfRjkg',
+    access_token_secret: 'MyzxhVfaZKEwwIGqB6zZdMaE0zIGJsWt6q2e5WWB4QnRX'
+});
+
+var stream = client.stream('statuses/filter', {track: 'javascript'});
+stream.on('data', function(event) {
+    console.log(event && event.text);
+});
+
+stream.on('error', function(error) {
+    console.log(error);
+});
+
+
+
