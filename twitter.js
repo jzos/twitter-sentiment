@@ -51,24 +51,36 @@ T.post('statuses/update', { status: 'hello world!' }, function(err, data, respon
 
 
 
-T.get('search/tweets', { q: 'trump since:2016-12-07 until:2016-12-08', count: 1 }, function(err, data, response) {
+T.get('search/tweets', { q: 'trump since:2016-11-07', count: 100 }, function(err, data, response) {
     console.log(data);
 
-    /*
+
     var test = [];
 
     test = data.statuses;
 
+    //console.log(test);
+
+    /*
+
     for (var i in test)
     {
-        console.log(test[i]);
+        //console.log(test[i]);
 
         if (test[i].source.indexOf("Influe") == -1)
         {
 
+
+            var r1              = sentiment(test[i].text);
+            var dataRecord      = merge(test[i],r1);
+
+
+            console.log(test[i].source + " : "  + dataRecord.score);
+
         }
 
     }
+
     */
 })
 
