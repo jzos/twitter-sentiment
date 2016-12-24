@@ -10,8 +10,23 @@ html body {
     */
   margin: 0;
   padding: 0;
+  /* Main Container */
+  /* Login Page */
+  /* Header */
+  /* Navigation */
 }
-html body .logo-container {
+html body .container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+html body .login-page {
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+html body .login-page .logo-container {
   padding: 20px;
   background: #200158 /*#2D1074*/;
   width: 450px;
@@ -23,13 +38,10 @@ html body .logo-container {
   -moz-border-radius: 7px 7px 0px 0px;
   -webkit-border-radius: 7px 7px 0px 0px;
 }
-html body .logo-container .logo {
+html body .login-page .logo-container .logo {
   margin-left: 0px;
 }
-html body .jumbotron {
-  background: none;
-}
-html body .form {
+html body .login-page .form {
   background: #200158;
   width: 450px;
   padding: 20px;
@@ -54,10 +66,27 @@ html body .form {
   border-right: solid 1px #5A3796;
   border-bottom: solid 1px #5A3796;
 }
-html body .form .btn-primary {
+html body .login-page .form .btn-primary {
   background-color: #F85269;
   border-color: #e04159;
 }
-html body .form label {
+html body .login-page .form label {
   color: #fff;
+}
+html body #header-section {
+  background: #200158;
+  height: 75px;
+  width: 100%;
+}
+html body #header-section #header-page .logo-holder {
+  margin: 17px 0 0 20px;
+  position: absolute;
+}
+html body #header-section #header-page .logo-holder .logo {
+  width: 300px;
+}
+html body #leftNav-section {
+  float: left;
+  width: 220px;
+  border-right: 1px solid red;
 }
