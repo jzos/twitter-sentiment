@@ -1,31 +1,33 @@
-function () {
+
+(function () {
     'use strict';
 
     angular
         .module('app')
         .controller('LeftNavigationController', LeftNavigationController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
-    function LeftNavigationController($location, AuthenticationService, FlashService) {
+    LeftNavigationController.$inject = ['$rootScope'];
+    function LeftNavigationController($rootScope) {
         var vm = this;
 
-        (function initController() {
+        //vm.someFunction = someFunction;
 
+        console.log("resize");
 
-        })();
+        initController();
 
-        function nav() {
-            vm.dataLoading = true;
-            AuthenticationService.Login(vm.username, vm.password, function (response) {
-                if (response.success) {
-                    AuthenticationService.SetCredentials(vm.username, vm.password);
-                    $location.path('/');
-                } else {
-                    FlashService.Error(response.message);
-                    vm.dataLoading = false;
-                }
+        function initController() {
+            $( window ).resize(function() {
+                //$( "#log" ).append( "<div>Handler for .resize() called.</div>" );
+                console.log("resize");
             });
-        };
+
+            console.log("resize");
+        }
+
+        function someFunction(id) {
+        }
     }
+
 
 })();

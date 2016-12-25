@@ -7,7 +7,7 @@ html
   body
   {
 
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Droid Sans', sans-serif;
     /*background: #28156D; */
     background: url("/img/background.jpg") repeat-x;
     /* Gradient
@@ -120,6 +120,7 @@ html
       background: @blueDark;
       height: 75px;
       width: 100%;
+      border-bottom: 1px solid @red;
 
       #header-page
       {
@@ -151,13 +152,24 @@ html
     {
       float: left;
       width: 220px;
-      border-right: 1px solid red;
+      border-right: 1px solid @red;
+      background: @blueDark;
 
       .leftNavigationPage
       {
 
         ul
         {
+
+          margin-top: 10px;
+
+
+          li
+          {
+            list-style: none;
+            color: @white;
+            padding: 8px;
+          }
 
         }
 
