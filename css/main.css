@@ -74,14 +74,17 @@ html body .login-page .form label {
   color: #fff;
 }
 html body #header-section {
-  background: #421896;
-  background: -moz-radial-gradient(center, ellipse cover, #421896 0%, #200158 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #421896), color-stop(100%, #200158));
-  background: -webkit-radial-gradient(center, ellipse cover, #421896 0%, #200158 100%);
-  background: -o-radial-gradient(center, ellipse cover, #421896 0%, #200158 100%);
-  background: -ms-radial-gradient(center, ellipse cover, #421896 0%, #200158 100%);
-  background: radial-gradient(ellipse at center, #421896 0%, #200158 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#421896', endColorstr='#200158', GradientType=1);
+  background: #200158;
+  /*
+      background: rgba(66,24,150,1);
+      background: -moz-radial-gradient(center, ellipse cover, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
+      background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(66,24,150,1)), color-stop(100%, rgba(32,1,88,1)));
+      background: -webkit-radial-gradient(center, ellipse cover, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
+      background: -o-radial-gradient(center, ellipse cover, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
+      background: -ms-radial-gradient(center, ellipse cover, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
+      background: radial-gradient(ellipse at center, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#421896', endColorstr='#200158', GradientType=1 );
+      */
   /*
       background: rgba(66,24,150,1);
       background: -moz-linear-gradient(top, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
@@ -133,4 +136,7 @@ html body #leftNav-section .leftNavigationPage ul li {
   list-style: none;
   color: #F1F1F9;
   padding: 8px;
+}
+html body #leftNav-section .leftNavigationPage ul li i {
+  padding-right: 8px;
 }
