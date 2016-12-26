@@ -74,7 +74,14 @@ html body .login-page .form label {
   color: #fff;
 }
 html body #header-section {
-  background: #200158;
+  background: #300580;
+  background: -moz-linear-gradient(top, #300580 0%, #1f0158 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #300580), color-stop(100%, #1f0158));
+  background: -webkit-linear-gradient(top, #300580 0%, #1f0158 100%);
+  background: -o-linear-gradient(top, #300580 0%, #1f0158 100%);
+  background: -ms-linear-gradient(top, #300580 0%, #1f0158 100%);
+  background: linear-gradient(to bottom, #300580 0%, #1f0158 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#300580', endColorstr='#1f0158', GradientType=0);
   /*
       background: rgba(66,24,150,1);
       background: -moz-radial-gradient(center, ellipse cover, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
@@ -131,12 +138,24 @@ html body #leftNav-section {
 }
 html body #leftNav-section .leftNavigationPage ul {
   margin-top: 10px;
+  padding-left: 10px;
 }
 html body #leftNav-section .leftNavigationPage ul li {
   list-style: none;
-  color: #F1F1F9;
-  padding: 8px;
+  color: #78a4fa;
+  padding: 10px;
 }
-html body #leftNav-section .leftNavigationPage ul li i {
-  padding-right: 8px;
+html body #leftNav-section .leftNavigationPage ul li [class^="icon-"]:before,
+html body #leftNav-section .leftNavigationPage ul li [class*=" icon-"]:before {
+  width: 30px;
+  margin-right: 10px;
+  text-align: left;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0;
+  font-size: 23px;
+  vertical-align: -4px;
+  color: #e04159;
 }
