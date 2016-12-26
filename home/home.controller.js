@@ -15,6 +15,13 @@
 
         initController();
 
+
+        /* Global Function
+        $rootScope.checkUsers = function() {
+            console.log("vm.allUsers");
+        };
+        */
+
         function initController() {
             loadCurrentUser();
             loadAllUsers();

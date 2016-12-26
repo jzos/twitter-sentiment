@@ -10,19 +10,15 @@
     function LeftNavigationController($rootScope) {
         var vm = this;
 
-        //vm.someFunction = someFunction;
-
-        console.log("resize");
-
         initController();
 
         function initController() {
-            $( window ).resize(function() {
-                //$( "#log" ).append( "<div>Handler for .resize() called.</div>" );
-                console.log("resize");
-            });
 
-            console.log("resize");
+            $(".leftNavigationPage").height(($( window ).height())-75);
+
+            $( window ).resize(function() {
+                $(".leftNavigationPage").height(($( window ).height())-75);
+            });
         }
 
         function someFunction(id) {
