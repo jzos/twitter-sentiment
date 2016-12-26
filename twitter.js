@@ -50,10 +50,9 @@ T.post('statuses/update', { status: 'hello world!' }, function(err, data, respon
 
 
 
-
-T.get('search/tweets', { q: 'trump since:2016-11-07', count: 100 }, function(err, data, response) {
+//  Twitter API is limited for 7 days
+T.get('search/tweets', { q: 'trump since:2016-12-19 until:2016-12-20', count: 100 }, function(err, data, response) {
     console.log(data);
-
 
     var test = [];
 
