@@ -14,10 +14,10 @@
 
         function initController() {
 
-            $(".leftNavigationPage").height(($( window ).height())-75);
+            $("#leftNav-section .leftNavigationPage").height(($( window ).height())-75);
 
             $( window ).resize(function() {
-                $(".leftNavigationPage").height(($( window ).height())-75);
+                $("#leftNav-section .leftNavigationPage").height(($( window ).height())-75);
             });
         }
 

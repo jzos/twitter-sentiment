@@ -50,38 +50,42 @@ T.post('statuses/update', { status: 'hello world!' }, function(err, data, respon
 
 
 
-//  Twitter API is limited for 7 days
-T.get('search/tweets', { q: 'trump since:2016-12-19 until:2016-12-20', count: 100 }, function(err, data, response) {
-    console.log(data);
+var sSecurityPhrases = "trump,clinton,cops,police,shooting,gun,hatecrime,hatespeech,kill,hurt,gay,lesbian,isis,muslim,potus,president";
 
-    var test = [];
 
-    test = data.statuses;
+function getTweets()
+{
+    //  Twitter API is limited for 7 days
+    T.get('search/tweets', { q: 'police since:2016-12-19 until:2016-12-20 max_id:810997946082738180', count: 100 }, function(err, data, response) {
+        //console.log(data);
 
-    //console.log(test);
+        var arrayTweets = [];
 
-    /*
+        arrayTweets = data.statuses;
 
-    for (var i in test)
-    {
-        //console.log(test[i]);
-
-        if (test[i].source.indexOf("Influe") == -1)
+        for (var i in arrayTweets)
         {
 
+            var r1              = sentiment(arrayTweets[i].text);
+            var dataRecord      = merge(arrayTweets[i],r1);
 
-            var r1              = sentiment(test[i].text);
-            var dataRecord      = merge(test[i],r1);
+            //console.log(dataRecord);
 
 
-            console.log(test[i].source + " : "  + dataRecord.score);
+            //insert record
+            dbs.collection('security').insert(dataRecord, function(err, records) {
+                if (err) throw err;
+                console.log("Record added as "+records.ops[0]._id);
+            });
 
         }
 
-    }
 
-    */
-})
+    })
+}
+
+
+getTweets();
 
 
 

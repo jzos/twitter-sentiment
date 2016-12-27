@@ -159,3 +159,52 @@ html body #leftNav-section .leftNavigationPage ul li [class*=" icon-"]:before {
   vertical-align: -4px;
   color: #e04159;
 }
+html body #rightNav-section {
+  float: right;
+  width: 220px;
+  border-left: 1px solid #F85269;
+  /*
+      background: rgba(32,1,88,1);
+      background: -moz-linear-gradient(top, rgba(32,1,88,1) 0%, rgba(66,24,150,1) 100%);
+      background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(32,1,88,1)), color-stop(100%, rgba(66,24,150,1)));
+      background: -webkit-linear-gradient(top, rgba(32,1,88,1) 0%, rgba(66,24,150,1) 100%);
+      background: -o-linear-gradient(top, rgba(32,1,88,1) 0%, rgba(66,24,150,1) 100%);
+      background: -ms-linear-gradient(top, rgba(32,1,88,1) 0%, rgba(66,24,150,1) 100%);
+      background: linear-gradient(to bottom, rgba(32,1,88,1) 0%, rgba(66,24,150,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#200158', endColorstr='#421896', GradientType=0 );
+      */
+  background: #421896;
+  background: -moz-linear-gradient(top, #421896 0%, #200158 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #421896), color-stop(100%, #200158));
+  background: -webkit-linear-gradient(top, #421896 0%, #200158 100%);
+  background: -o-linear-gradient(top, #421896 0%, #200158 100%);
+  background: -ms-linear-gradient(top, #421896 0%, #200158 100%);
+  background: linear-gradient(to bottom, #421896 0%, #200158 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#421896', endColorstr='#200158', GradientType=0);
+}
+html body #rightNav-section .leftNavigationPage ul {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+html body #rightNav-section .leftNavigationPage ul li {
+  list-style: none;
+  color: #78a4fa;
+  padding: 10px;
+}
+html body #rightNav-section .leftNavigationPage ul li [class^="icon-"]:before,
+html body #rightNav-section .leftNavigationPage ul li [class*=" icon-"]:before {
+  width: 30px;
+  margin-right: 10px;
+  text-align: left;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: 0;
+  font-size: 23px;
+  vertical-align: -4px;
+  color: #e04159;
+}
+html body #home-section {
+  float: left;
+}
