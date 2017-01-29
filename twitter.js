@@ -15,11 +15,9 @@ var T = new Twit({
     consumer_secret: '9TKbkrcVSRqefw5fQ9v8wkQtktbHOSjdy2evUzwSxjylxqACF4',
     access_token: '19669840-EE31VHbTfidEHEhqnO2epnsaY6EqSy6XUbMBfRjkg',
     access_token_secret: 'MyzxhVfaZKEwwIGqB6zZdMaE0zIGJsWt6q2e5WWB4QnRX',
-    timeout_ms:           60*1000  // optional HTTP request timeout to apply to all requests.
+    timeout_ms:           600*1000  // optional HTTP request timeout to apply to all requests.
 })
 
-
-/*
 
 //require node modules (see package.json)
 var MongoClient = require('mongodb').MongoClient
@@ -28,11 +26,10 @@ var MongoClient = require('mongodb').MongoClient
 
 var dbs = {};
 
-*/
 
 //connect away
 
-/*
+
 
 //MongoClient.connect('mongodb://127.0.0.1:27017/twitter', function(err, db) {
 MongoClient.connect('mongodb://mongoapp:kill129999@ds135969-a0.mlab.com:35969,ds135969-a1.mlab.com:35969/?replicaSet=rs-ds135969', function(err, db) {
@@ -41,8 +38,6 @@ MongoClient.connect('mongodb://mongoapp:kill129999@ds135969-a0.mlab.com:35969,ds
 
     dbs = db;
 });
-
-*/
 
 
 /*
@@ -277,14 +272,13 @@ stream.on('tweet', function (tweet) {
     var dataRecord      = merge(tweet,r1);
 
     console.log(dataRecord);
-    /*
 
     //insert record
     dbs.collection('jackinthebox').insert(dataRecord, function(err, records) {
         if (err) throw err;
         console.log("Record added as "+records.ops[0]._id);
     });
-     */
+
 
     console.log("*************************************");
 
