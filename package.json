@@ -1,0 +1,30 @@
+{
+  "name": "symamp",
+  "version": "1.0.0",
+  "description": "Collecting Twitter posts",
+  "main": "twitter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node twitter.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jzos/twitter-sentiment"
+  },
+  "dependencies": {
+    "twit" : "2.2.5",
+    "fs" : "0.0.1-security",
+    "merge" : "1.2.0"
+  },
+  "keywords": [
+    "symamp",
+    "prototype",
+    "twitter"
+  ],
+  "author": "Jaime Cavazos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jzos/twitter-sentiment/issues"
+  },
+  "homepage": "https://github.com/jzos/twitter-sentiment#readme"
+}
