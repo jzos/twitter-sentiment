@@ -15,7 +15,8 @@
     "twit" : "2.2.5",
     "fs" : "0.0.1-security",
     "merge" : "1.2.0",
-    "mongodb" : "2.2.22"
+    "mongodb" : "2.2.22",
+    "util" : "0.10.3"
   },
   "keywords": [
     "symamp",
