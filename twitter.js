@@ -49,6 +49,7 @@ T.post('statuses/update', { status: 'hello world!' }, function(err, data, respon
 //  https://dev.twitter.com/rest/public/search
 
 
+/*
 
 var sSecurityPhrases = "trump,clinton,cops,police,shooting,gun,hatecrime,hatespeech,kill,hurt,gay,lesbian,isis,muslim,potus,president";
 
@@ -84,8 +85,18 @@ function getTweets()
     })
 }
 
+*/
 
-getTweets();
+//getTweets();
+
+
+/*
+
+T.get('users/search', { q: 'Jaime Cavazos' }, function (err, data, response) {
+    console.log(data)
+})
+
+*/
 
 
 
@@ -237,12 +248,12 @@ stream.on('tweet', function (tweet) {
 
 
 
-/*
 
-var sSecurity = '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president';
+
+//var sSecurity = '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president';
 
 //var sJackInTheBox = 'brunchfast,#brunchfast,Brunch Burger,Southwest Scrambler Plate,Homestyle Potatoes,Bacon & Egg Chicken Sandwich,Orange Cranberry Muffins,Mini Pancakes,Blood Orange Fruit Cooler,Original Iced Coffee,Coca-Cola Freestyle';
-sJackInTheBox = 'brunchfast,jack in the box, jib';
+sJackInTheBox = 'jack in the box,@JackBox';
 
 
 
@@ -268,7 +279,7 @@ stream.on('tweet', function (tweet) {
 
 })
 
-*/
+
 
 
 
