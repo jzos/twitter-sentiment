@@ -5,11 +5,10 @@
 var fs                  = require('fs');
 var sentiment           = require('sentiment');
 var merge               = require('merge'), original, cloned;
-var express             = require('express');
-var app = express();
 
-
-app.set('port', (process.env.PORT || 5000));
+//var express             = require('express');
+//var app = express();
+//app.set('port', (process.env.PORT || 5000));
 
 
 var Twit = require('twit');
