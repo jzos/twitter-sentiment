@@ -16,12 +16,10 @@
   },
   "dependencies": {
     "twit": "2.2.5",
-    "fs": "0.0.1-security",
     "merge": "1.2.0",
     "mongodb": "2.2.22",
     "util": "0.10.3",
-    "sentiment": "2.1.0",
-    "express" : "4.14.1"
+    "sentiment": "2.1.0"
   },
   "keywords": [
     "symamp",

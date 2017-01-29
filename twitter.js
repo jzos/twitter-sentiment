@@ -2,7 +2,6 @@
  * Created by jaimemac on 12/4/16.
  */
 
-var fs                  = require('fs');
 var sentiment           = require('sentiment');
 var merge               = require('merge'), original, cloned;
 
