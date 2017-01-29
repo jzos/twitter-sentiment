@@ -2,8 +2,6 @@
  * Created by jaimemac on 12/4/16.
  */
 
-require('newrelic');
-
 var fs                  = require('fs');
 var sentiment           = require('sentiment');
 var merge               = require('merge'), original, cloned;
