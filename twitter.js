@@ -5,7 +5,11 @@
 var fs                  = require('fs');
 var sentiment           = require('sentiment');
 var merge               = require('merge'), original, cloned;
+var express             = require('express');
+var app = express();
 
+
+app.set('port', (process.env.PORT || 5000));
 
 
 var Twit = require('twit');
@@ -15,7 +19,7 @@ var T = new Twit({
     consumer_secret: '9TKbkrcVSRqefw5fQ9v8wkQtktbHOSjdy2evUzwSxjylxqACF4',
     access_token: '19669840-EE31VHbTfidEHEhqnO2epnsaY6EqSy6XUbMBfRjkg',
     access_token_secret: 'MyzxhVfaZKEwwIGqB6zZdMaE0zIGJsWt6q2e5WWB4QnRX',
-    timeout_ms:           600*1000  // optional HTTP request timeout to apply to all requests.
+    timeout_ms:           6000*1000  // optional HTTP request timeout to apply to all requests.
 })
 
 
