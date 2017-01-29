@@ -14,7 +14,8 @@
   "dependencies": {
     "twit" : "2.2.5",
     "fs" : "0.0.1-security",
-    "merge" : "1.2.0"
+    "merge" : "1.2.0",
+    "mongodb" : "2.2.22"
   },
   "keywords": [
     "symamp",
