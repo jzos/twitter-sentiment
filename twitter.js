@@ -33,8 +33,8 @@ var dbs = {};
 
 
 
-//MongoClient.connect('mongodb://127.0.0.1:27017/twitter', function(err, db) {
-MongoClient.connect('mongodb://mongoapp:kill129999@ds135969-a0.mlab.com:35969,ds135969-a1.mlab.com:35969/heroku_9sw52m8z?replicaSet=rs-ds135969', function(err, db) {
+MongoClient.connect('mongodb://127.0.0.1:27017/twitter', function(err, db) {
+//MongoClient.connect('mongodb://mongoapp:kill129999@ds135969-a0.mlab.com:35969,ds135969-a1.mlab.com:35969/heroku_9sw52m8z?replicaSet=rs-ds135969', function(err, db) {
     if (err) throw err;
     console.log("Connected to Database");
 
@@ -260,7 +260,7 @@ stream.on('tweet', function (tweet) {
 //var sSecurity = '#trump,#clinton,#cops,#police,#shooting,#gun,#hatecrime,#hatespeech,#kill,#hurt,#gay,#lesbian,#isis,#muslim,#potus,#president';
 
 //var sJackInTheBox = 'brunchfast,#brunchfast,Brunch Burger,Southwest Scrambler Plate,Homestyle Potatoes,Bacon & Egg Chicken Sandwich,Orange Cranberry Muffins,Mini Pancakes,Blood Orange Fruit Cooler,Original Iced Coffee,Coca-Cola Freestyle';
-sJackInTheBox = 'jack in the box,@JackBox';
+sJackInTheBox = 'jack in the box,@JackBox,mcdonalds,Chipotle Mexican Grill,Chipotle,Dominos Pizza,Dominos,wendys,Panera Bread Company,Panera,Panera Bread,Dunkin Donuts,Burger King,Taco Bell,KFC,Pizza Hut,carls jr,Subway,Qdoba Mexican Grill,Qdoba';
 
 
 
