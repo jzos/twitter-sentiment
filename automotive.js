@@ -13,10 +13,10 @@ var merge               = require('merge'), original, cloned;
 var Twit = require('twit');
 
 var T = new Twit({
-    consumer_key: 'qphEVi498C5OGVaCKnl6QGVGy',
-    consumer_secret: '9TKbkrcVSRqefw5fQ9v8wkQtktbHOSjdy2evUzwSxjylxqACF4',
-    access_token: '19669840-EE31VHbTfidEHEhqnO2epnsaY6EqSy6XUbMBfRjkg',
-    access_token_secret: 'MyzxhVfaZKEwwIGqB6zZdMaE0zIGJsWt6q2e5WWB4QnRX',
+    consumer_key: 'zrygVD3bcdopRZLeUsRZzsfQd',
+    consumer_secret: 'Xan82IfcwSdDctsidGjkRzqD0CGbQ9MMPZeaROfldDH2EYrABm',
+    access_token: '19669840-ipMlfY9C6MuajkGYm9EZaF9cG03GUKQUqDYYgvV0l',
+    access_token_secret: 'f7qbiBYV06WLcFpNUL2KEIoU71Equ4jb9a9jIrSKiszdt',
     timeout_ms:           6000*1000  // optional HTTP request timeout to apply to all requests.
 })
 
@@ -61,7 +61,6 @@ T.get('account/verify_credentials', { skip_status: true })
 
 
 sAutomotive = 'Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,"rush chevrolet","covert ford","maxwell ford","truck city ford","south point dodge","nyle maxwell","covert dodge","Charles Maund Toyota","AutoNation Toyota","Round Rock Toyota",Roger Beasley Mazda,"South Point Hyundai","Howdy Honda",""Town North Nissan","dream cars austin"';
-
 
 
 var stream = T.stream('statuses/filter', { track: sAutomotive, language: 'en' });
