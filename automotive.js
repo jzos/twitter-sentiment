@@ -60,8 +60,7 @@ T.get('account/verify_credentials', { skip_status: true })
     })
 
 
-sAutomotive = 'Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,"rush chevrolet","covert ford","maxwell ford","truck city ford","south point dodge","nyle maxwell","covert dodge","Charles Maund Toyota","AutoNation Toyota","Round Rock Toyota",Roger Beasley Mazda,"South Point Hyundai","Howdy Honda",""Town North Nissan","dream cars austin"';
-
+sAutomotive = 'ford,bmw,gmc,chevrolet,kia,honda,isuzu,mazda,dodge,Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,rush chevrolet,covert ford,maxwell ford,truck city ford,south point dodge,nyle maxwell,covert dodge,Charles Maund Toyota,AutoNation Toyota,Round Rock Toyota,Roger Beasley Mazda,South Point Hyundai,Howdy Honda,Town North Nissan,dream cars austin';
 
 var stream = T.stream('statuses/filter', { track: sAutomotive, language: 'en' });
 
