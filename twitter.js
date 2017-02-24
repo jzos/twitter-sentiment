@@ -270,10 +270,19 @@ var stream = T.stream('statuses/filter', { track: sJackInTheBox, language: 'en' 
 
 stream.on('tweet', function (tweet) {
 
+    var date = tweet.created_at;
+
+    //console.log(new Date(Date.parse(date.replace(/( \+)/, ' UTC$1'))));
+
+    tweet["created_at"] = new Date(Date.parse(date.replace(/( \+)/, ' UTC$1')));
+
     var r1              = sentiment(tweet.text);
     var dataRecord      = merge(tweet,r1);
 
-    console.log(dataRecord);
+
+
+
+    //console.log(dataRecord);
 
     //insert record
     dbs.collection('jackinthebox').insert(dataRecord, function(err, records) {
