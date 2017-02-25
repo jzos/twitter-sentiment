@@ -68,6 +68,10 @@ var stream = T.stream('statuses/filter', { track: sAutomotive, language: 'en' })
 
 stream.on('tweet', function (tweet) {
 
+    var date = tweet.created_at;
+
+    tweet["created_at"] = new Date(Date.parse(date.replace(/( \+)/, ' UTC$1')));
+
     var r1              = sentiment(tweet.text);
     var dataRecord      = merge(tweet,r1);
 

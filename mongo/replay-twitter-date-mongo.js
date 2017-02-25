@@ -3,12 +3,12 @@
 
 
 
-db.jackinthebox.find().forEach(function(element){
+db.dealerships.find().forEach(function(element){
   //element.id = new Date(Date.parse((element.id).replace(/( \+)/, ' UTC$1')));
   
   //element.created_at = new Date(Date.parse(element.created_at.split(/( \+)/,"").join(' UTC$1')));
   element.created_at = new Date(Date.parse(element.created_at));
-  db.jackinthebox.save(element);
+  db.dealerships.save(element);
 })
 
 

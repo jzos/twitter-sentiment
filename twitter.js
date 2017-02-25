@@ -282,7 +282,7 @@ stream.on('tweet', function (tweet) {
 
 
 
-    //console.log(dataRecord);
+    console.log(dataRecord);
 
     //insert record
     dbs.collection('jackinthebox').insert(dataRecord, function(err, records) {
