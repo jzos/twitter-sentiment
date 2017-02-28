@@ -60,7 +60,7 @@ T.get('account/verify_credentials', { skip_status: true })
     })
 
 
-sAutomotive = 'Hyundai sucks,Hyundai dealership sucks,ford car sucks,mazda car sucks,dodge car sucks,toyota car sucks,ford truck sucks,toyota sucks,mazda sucks,mazda dealership sucks,ford dealership sucks,chevrolet dealership sucks,nissan sucks, nissan dealership sucks,dodge truck sucks,dodge dealership sucks,Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,rush chevrolet,covert ford,maxwell ford,truck city ford,south point dodge,nyle maxwell,covert dodge,Charles Maund Toyota,AutoNation Toyota,Round Rock Toyota,Roger Beasley Mazda,South Point Hyundai,Howdy Honda,Town North Nissan,buy a new car,buy a car,buy a used car, buy used car,buy a new truck,buy new truck,buy truck,buy car,msrp';
+sAutomotive = 'Hyundai sucks,Hyundai dealership sucks,ford car sucks,mazda car sucks,dodge car sucks,toyota car sucks,ford truck sucks,toyota sucks,mazda sucks,mazda dealership sucks,ford dealership sucks,chevrolet dealership sucks,nissan sucks, nissan dealership sucks,dodge truck sucks,dodge dealership sucks,Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,rush chevrolet,covert ford,maxwell ford,truck city ford,south point dodge,nyle maxwell,covert dodge,Charles Maund Toyota,AutoNation Toyota,Round Rock Toyota,Roger Beasley Mazda,South Point Hyundai,Howdy Honda,Town North Nissan,buy a new car,buy a car,buy a used car, buy used car,buy a new truck,buy new truck,buy truck,buy car,msrp,need buy car truck,need new car truck,need used car truck';
 
 var stream = T.stream('statuses/filter', { track: sAutomotive, language: 'en' });
 
