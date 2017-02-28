@@ -280,8 +280,6 @@ stream.on('tweet', function (tweet) {
     var dataRecord      = merge(tweet,r1);
 
 
-
-
     console.log(dataRecord);
 
     //insert record
