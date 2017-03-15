@@ -182,28 +182,31 @@ html body #rightNav-section {
   background: linear-gradient(to bottom, #421896 0%, #200158 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#421896', endColorstr='#200158', GradientType=0);
 }
-html body #rightNav-section .leftNavigationPage ul {
+html body #rightNav-section .bookmarksNav .bookmarks ul {
   margin-top: 10px;
   padding-left: 10px;
 }
-html body #rightNav-section .leftNavigationPage ul li {
+html body #rightNav-section .bookmarksNav .bookmarks ul li {
+  border: 1px solid #78a4fa;
+  border-radius: 50px;
+  width: 45px;
   list-style: none;
   color: #78a4fa;
-  padding: 10px;
+  float: left;
+  margin: 10px;
 }
-html body #rightNav-section .leftNavigationPage ul li [class^="icon-"]:before,
-html body #rightNav-section .leftNavigationPage ul li [class*=" icon-"]:before {
-  width: 30px;
-  margin-right: 10px;
+html body #rightNav-section .bookmarksNav .bookmarks ul li [class^="icon-"]:before,
+html body #rightNav-section .bookmarksNav .bookmarks ul li [class*=" icon-"]:before {
+  width: 45px;
   text-align: left;
   /* opacity: .8; */
   font-variant: normal;
   text-transform: none;
   line-height: 1em;
-  margin-left: 0;
+  margin: 10px;
   font-size: 23px;
   vertical-align: -4px;
-  color: #e04159;
+  color: #78a4fa;
 }
 html body #home-section {
   float: left;

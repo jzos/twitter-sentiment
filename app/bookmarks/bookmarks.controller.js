@@ -14,10 +14,10 @@
 
         function initController() {
 
-            $("#rightNav-section .leftNavigationPage").height(($( window ).height())-75);
+            $("#rightNav-section .bookmarksNav").height(($( window ).height())-75);
 
             $( window ).resize(function() {
-                $("#rightNav-section .leftNavigationPage").height(($( window ).height())-75);
+                $("#rightNav-section .bookmarksNav").height(($( window ).height())-75);
             });
         }
 

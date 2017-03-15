@@ -277,42 +277,55 @@ html
       background: linear-gradient(to bottom, rgba(66,24,150,1) 0%, rgba(32,1,88,1) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#421896', endColorstr='#200158', GradientType=0 );
 
-      .leftNavigationPage
+      .bookmarksNav
       {
 
-        ul
+        .bookmarks
         {
 
-          margin-top: 10px;
-          padding-left: 10px;
-
-          li
+          ul
           {
 
-            [class^="icon-"]:before, [class*=" icon-"]:before {
-              width: 30px;
-              margin-right: 10px;
-              text-align: left;
-              /* opacity: .8; */
-              font-variant: normal;
-              text-transform: none;
-              line-height: 1em;
-              margin-left: 0;
-              font-size: 23px;
-              vertical-align: -4px;
-              //text-shadow: 3px 3px 1px rgba(224, 91, 112, 0.3);
-              color: @redDark;
+            margin-top: 10px;
+            padding-left: 10px;
+
+            li
+            {
+
+
+
+              border: 1px solid #78a4fa;
+              border-radius: 50px;
+              width: 45px;
+              list-style: none;
+              color: @blueLight;
+              float: left;
+              margin: 10px;
+
+
+              [class^="icon-"]:before, [class*=" icon-"]:before {
+                width: 45px;
+                text-align: left;
+                /* opacity: .8; */
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1em;
+                margin: 10px;
+                font-size: 23px;
+                vertical-align: -4px;
+                //text-shadow: 3px 3px 1px rgba(224, 91, 112, 0.3);
+                color: #78a4fa;
+              }
+
+              //text-shadow: 3px 3px 1px rgba(147, 180, 250, 0.3);
             }
 
-            list-style: none;
-            color: @blueLight;
-            padding: 10px;
-            //text-shadow: 3px 3px 1px rgba(147, 180, 250, 0.3);
           }
 
         }
 
       }
+
     }
 
 
