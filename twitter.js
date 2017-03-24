@@ -271,6 +271,7 @@ var stream = T.stream('statuses/filter', { track: sJackInTheBox, language: 'en' 
 stream.on('tweet', function (tweet) {
 
     var date = tweet.created_at;
+    console.log(date + " : " + new Date(Date.parse(date.replace(/( \+)/, ' UTC$1'))));
 
     //console.log(new Date(Date.parse(date.replace(/( \+)/, ' UTC$1'))));
 
@@ -279,8 +280,6 @@ stream.on('tweet', function (tweet) {
     var r1              = sentiment(tweet.text);
     var dataRecord      = merge(tweet,r1);
 
-
-    console.log(dataRecord);
 
     //insert record
     dbs.collection('jackinthebox').insert(dataRecord, function(err, records) {
@@ -294,7 +293,13 @@ stream.on('tweet', function (tweet) {
 })
 
 
-
+/*
+*
+* How to access a post in Twitter
+* https://twitter.com/McSwaggin_/status/844976447064301572
+* https://twitter.com/user.screen_name/status/id
+*
+ */
 
 
 /*

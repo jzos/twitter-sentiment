@@ -1,7 +1,7 @@
 {
   "name": "symamp",
   "version": "1.0.0",
-  "description": "Collecting Twitter posts",
+  "description": "Social and Forum Aggregator",
   "main": "twitter.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,12 +19,17 @@
     "merge": "1.2.0",
     "mongodb": "2.2.22",
     "util": "0.10.3",
-    "sentiment": "2.1.0"
+    "sentiment": "2.1.0",
+    "cheerio": "0.22.0",
+    "request": "2.81.0"
   },
   "keywords": [
     "symamp",
     "prototype",
-    "twitter"
+    "twitter",
+    "craigslist",
+    "web scraping",
+    "instagram"
   ],
   "author": "Jaime Cavazos",
   "license": "ISC",
