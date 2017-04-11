@@ -5,8 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['UserService', '$rootScope'];
-    function HomeController(UserService, $rootScope) {
+    HomeController.$inject = ['UserService', '$rootScope','D3Graphs'];
+    function HomeController(UserService, $rootScope, D3Graphs) {
         var vm = this;
 
         vm.user = null;
@@ -14,6 +14,10 @@
         vm.deleteUser = deleteUser;
 
         initController();
+
+        D3Graphs.piechart("#piechart");
+        D3Graphs.barchart("#piechart2");
+        D3Graphs.linegraph("#linechart");
 
 
         /* Global Function
@@ -47,6 +51,8 @@
                     loadAllUsers();
                 });
         }
+
+
     }
 
 })();

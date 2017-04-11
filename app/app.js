@@ -2,13 +2,22 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngCookies'])
+        .module('app', [
+            'ngRoute',
+            'ngCookies',
+            'graphs.d3graphs'
+        ])
         .config(config)
-        .run(run);
+        .run(run)
+        .controller('MainCtrl', ['$scope', MainCtrl]);
 
     config.$inject = ['$routeProvider', '$locationProvider'];
 
-
+    function MainCtrl($scope, $log) {
+        $scope.setActivePage = function(name) {
+            $scope.activePage = name;
+        };
+    }
 
     function config($routeProvider, $locationProvider) {
         $routeProvider
@@ -53,5 +62,9 @@
             }
         });
     }
+
+
+
+
 
 })();

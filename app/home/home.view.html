@@ -6,20 +6,78 @@
 </div>
 
 <div id="home-section">
-    <h1>Hi {{vm.user.firstName}}!</h1>
-    <p>You're logged in!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li ng-repeat="user in vm.allUsers">
-            {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a ng-click="vm.deleteUser(user.id)">Delete</a>
-        </li>
-    </ul>
-    <p>&nbsp;</p>
-    <p><a href="#!/login" class="btn btn-primary">Logout</a></p>
+
+    <h2>Create New Dashboard</h2>
+
+    <div id="segment-filter">
+        <textarea class="form-control" rows="6" placeholder="Add filter words or phrases here sepearated by commas"></textarea>
+    </div>
+
+
+    <div id="segment-container">
+
+        <span class="segments">
+
+            <div class="segment-header">
+                Gender
+            </div>
+
+            <div class="segment-preborder"></div>
+            <div class="segment-visual-container" id="piechart"></div>
+
+        </span>
+
+
+        <span class="segments">
+
+            <div class="segment-header">
+                Gender
+            </div>
+
+            <div class="segment-preborder"></div>
+            <div class="segment-visual-container" id="piechart2"></div>
+
+        </span>
+
+
+        <span class="segments">
+
+            <div class="segment-header">
+                Gender
+            </div>
+
+            <div class="segment-preborder"></div>
+            <div class="segment-visual-container" id="linechart"></div>
+
+        </span>
+
+
+
+
+        <span class="stretch"></span>
+    </div>
 
 </div>
 
 <div id="rightNav-section">
     <ng-include src="'/app/bookmarks/bookmarks.view.html'"></ng-include>
 </div>
+
+
+<!--
+
+<h1>Hi {{vm.user.firstName}}!</h1>
+<p>You're logged in!!</p>
+<h3>All registered users:</h3>
+<ul>
+    <li ng-repeat="user in vm.allUsers">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a ng-click="vm.deleteUser(user.id)">Delete</a>
+    </li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="#!/login" class="btn btn-primary">Logout</a></p>
+
+
+
+-->

@@ -1,0 +1,15 @@
+#linechart {
+  fill: #78a4fa;
+}
+#linechart path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+#linechart .axis path,
+#linechart .axis line {
+  fill: none;
+  stroke: #e04159;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
