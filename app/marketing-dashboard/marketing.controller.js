@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .controller('HomeController', HomeController);
+        .controller('MarketingController', MarketingController);
 
-    HomeController.$inject = ['UserService', '$rootScope','D3Graphs'];
-    function HomeController(UserService, $rootScope, D3Graphs) {
+    MarketingController.$inject = ['UserService', '$rootScope','D3Graphs'];
+    function MarketingController(UserService, $rootScope, D3Graphs) {
         var vm = this;
 
         vm.user = null;

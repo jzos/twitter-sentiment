@@ -37,6 +37,9 @@
                     })
                     .attr("d", arc);
             },
+
+            // BARCHART ////////////////////////////////////////////////////////////////
+
             barchart : function (objName) {
                 var w = 270;
                 var h = 236;
@@ -135,7 +138,7 @@
                         return h - yScale(d.value) + 14;
                     })
                     .attr("font-family", "sans-serif")
-                    .attr("font-size", "11px")
+                    .attr("font-size", "8px")
                     .attr("fill", "white");
 
                 var sortOrder = false;
@@ -250,84 +253,71 @@
             },
             linegraph : function (objName) {
 
-                var margin = {
-                    top: 30,
-                    right: 20,
-                    bottom: 30,
-                    left: 50
-                };
-                var width = 270 - margin.left - margin.right;
-                var height = 230 - margin.top - margin.bottom;
+                var margin = {top: 20, right: 20, bottom: 30, left: 30},
+                    width = 270 - margin.left - margin.right,
+                    height = 230 - margin.top - margin.bottom;
 
-                var parseDate = d3.time.format("%d-%b-%y").parse;
+                var dataset = [
+                    {x: 0, y: 5},
+                    {x: 1, y: 8},
+                    {x: 2, y: 13},
+                    {x: 3, y: 12},
+                    {x: 4, y: 16},
+                    {x: 5, y: 21},
+                    {x: 6, y: 18},
+                    {x: 7, y: 23},
+                    {x: 8, y: 24},
+                    {x: 9, y: 28},
+                    {x: 10, y: 35},
+                    {x: 11, y: 30},
+                    {x: 12, y: 32}
+                ];
 
-                var x = d3.time.scale().range([0, width]);
-                var y = d3.scale.linear().range([height, 0]);
+                var xScale = d3.scale.linear()
+                    .domain([0, d3.max(dataset, function(d){ return d.x; })])
+                    .range([0, width]);
 
-                var xAxis = d3.svg.axis().scale(x)
-                    .orient("bottom").ticks(5);
+                var yScale = d3.scale.linear()
+                    .domain([0, d3.max(dataset, function(d){ return d.y; })])
+                    .range([height, 0]);
 
-                var yAxis = d3.svg.axis().scale(y)
-                    .orient("left").ticks(5);
+                var xAxis = d3.svg.axis()
+                    .scale(xScale)
+                    .orient("bottom")
+                    .innerTickSize(-height)
+                    .outerTickSize(0)
+                    .tickPadding(10);
 
-                var valueline = d3.svg.line()
-                    .x(function (d) {
-                        return x(d.date);
-                    })
-                    .y(function (d) {
-                        return y(d.close);
-                    });
+                var yAxis = d3.svg.axis()
+                    .scale(yScale)
+                    .orient("left")
+                    .innerTickSize(-width)
+                    .outerTickSize(0)
+                    .tickPadding(10);
 
-                var svg = d3.select(objName)
-                    .append("svg")
+                var line = d3.svg.line()
+                    .x(function(d) { return xScale(d.x); })
+                    .y(function(d) { return yScale(d.y); });
+
+                var svg = d3.select(objName).append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// Get the data
-                var data = [{
-                    date: "1-May-12",
-                    close: "58.13"
-                }, {
-                    date: "30-Apr-12",
-                    close: "53.98"
-                }, {
-                    date: "27-Apr-12",
-                    close: "67.00"
-                }, {
-                    date: "26-Apr-12",
-                    close: "89.70"
-                }, {
-                    date: "25-Apr-12",
-                    close: "99.00"
-                }];
-
-                data.forEach(function (d) {
-                    d.date = parseDate(d.date);
-                    d.close = +d.close;
-                });
-
-// Scale the range of the data
-                x.domain(d3.extent(data, function (d) {
-                    return d.date;
-                }));
-                y.domain([0, d3.max(data, function (d) {
-                    return d.close;
-                })]);
-
-                svg.append("path") // Add the valueline path.
-                    .attr("d", valueline(data));
-
-                svg.append("g") // Add the X Axis
+                svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
+                    .call(xAxis)
 
-                svg.append("g") // Add the Y Axis
+                svg.append("g")
                     .attr("class", "y axis")
-                    .call(yAxis);
+                    .call(yAxis)
 
+                svg.append("path")
+                    .data([dataset])
+                    .attr("class", "line")
+                    .attr("d", line);
 
             }
 

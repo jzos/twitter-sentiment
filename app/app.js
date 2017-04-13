@@ -22,8 +22,8 @@
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                controller: 'HomeController',
-                templateUrl: '/app/home/home.view.html',
+                controller: 'CreateDashboardController',
+                templateUrl: '/app/create-dashboard/createDashboard.view.html',
                 controllerAs: 'vm'
             })
 
@@ -36,6 +36,18 @@
             .when('/register', {
                 controller: 'RegisterController',
                 templateUrl: '/app/register/register.view.html',
+                controllerAs: 'vm'
+            })
+
+            .when('/marketing', {
+                controller: 'MarketingController',
+                templateUrl: '/app/marketing-dashboard/marketing.view.html',
+                controllerAs: 'vm'
+            })
+
+            .when('/customer-service', {
+                controller: 'CustomerServiceController',
+                templateUrl: '/app/customer-service/customerService.view.html',
                 controllerAs: 'vm'
             })
 

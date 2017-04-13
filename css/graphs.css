@@ -1,5 +1,6 @@
 #linechart {
   fill: #78a4fa;
+  font-size: 9px;
 }
 #linechart path {
   stroke: steelblue;
@@ -9,7 +10,10 @@
 #linechart .axis path,
 #linechart .axis line {
   fill: none;
-  stroke: #e04159;
+  stroke: #6e3cb0;
   stroke-width: 1;
   shape-rendering: crispEdges;
+}
+#barchart {
+  font-size: 7px;
 }

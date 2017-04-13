@@ -3,10 +3,10 @@
 
     angular
         .module('app')
-        .controller('HomeController', HomeController);
+        .controller('CreateDashboardController', CreateDashboardController);
 
-    HomeController.$inject = ['UserService', '$rootScope','D3Graphs'];
-    function HomeController(UserService, $rootScope, D3Graphs) {
+    CreateDashboardController.$inject = ['UserService', '$rootScope','D3Graphs'];
+    function CreateDashboardController(UserService, $rootScope, D3Graphs) {
         var vm = this;
 
         vm.user = null;

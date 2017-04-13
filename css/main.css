@@ -1,6 +1,6 @@
 html body {
   font-family: 'Droid Sans', sans-serif;
-  background: #160538;
+  background: url("/img/background3.png") repeat-x;
   /* Gradient
 
        #331189
@@ -15,6 +15,7 @@ html body {
   /* LEFT NAVIGATION */
   /* RIGHT NAVIGATION */
   /* NEW DASHBOARD */
+  /* CUSTOMER SERVICE */
 }
 html body .container {
   width: 100%;
@@ -114,6 +115,31 @@ html body #header-section #header-page .logo-holder {
 html body #header-section #header-page .logo-holder .logo {
   width: 300px;
 }
+html body #header-section #header-page .nav-container {
+  float: right;
+  height: 100%;
+}
+html body #header-section #header-page .nav-container ul li {
+  float: right;
+  list-style: none;
+  border-left: 1px solid #3d1396;
+  height: 75px;
+  width: 73px;
+}
+html body #header-section #header-page .nav-container ul li [class^="icon-"]:before,
+html body #header-section #header-page .nav-container ul li [class*=" icon-"]:before {
+  width: 100%;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 3em;
+  margin-left: 0;
+  font-size: 23px;
+  vertical-align: -4px;
+  color: #78a4fa;
+  height: 73px;
+  margin-right: 0;
+}
 html body #leftNav-section {
   float: left;
   width: 220px;
@@ -192,11 +218,18 @@ html body #rightNav-section .bookmarksNav .bookmarks h5 {
   text-align: center;
   color: #78a4fa;
 }
+html body #rightNav-section .bookmarksNav .bookmarks .date-dropdown {
+  text-align: center;
+  z-index: 500;
+}
+html body #rightNav-section .bookmarksNav .bookmarks .date-dropdown li {
+  text-align: left;
+}
 html body #rightNav-section .bookmarksNav .bookmarks ul {
   margin-top: 10px;
   padding-left: 10px;
 }
-html body #rightNav-section .bookmarksNav .bookmarks ul li {
+html body #rightNav-section .bookmarksNav .bookmarks ul li.source-icons {
   border: 1px solid #3d1396;
   border-radius: 50px;
   width: 45px;
@@ -205,8 +238,8 @@ html body #rightNav-section .bookmarksNav .bookmarks ul li {
   float: left;
   margin: 10px;
 }
-html body #rightNav-section .bookmarksNav .bookmarks ul li [class^="icon-"]:before,
-html body #rightNav-section .bookmarksNav .bookmarks ul li [class*=" icon-"]:before {
+html body #rightNav-section .bookmarksNav .bookmarks ul li.source-icons [class^="icon-"]:before,
+html body #rightNav-section .bookmarksNav .bookmarks ul li.source-icons [class*=" icon-"]:before {
   width: 45px;
   text-align: left;
   /* opacity: .8; */
@@ -217,6 +250,12 @@ html body #rightNav-section .bookmarksNav .bookmarks ul li [class*=" icon-"]:bef
   font-size: 23px;
   vertical-align: -4px;
   color: #78a4fa;
+}
+html body #rightNav-section .bookmarksNav .bookmarks .button-save-holder {
+  text-align: center;
+  margin-top: 20px;
+  float: left;
+  width: 100%;
 }
 html body #home-section {
   margin-left: 293px;
@@ -229,25 +268,44 @@ html body #home-section h2 {
   margin-bottom: 30px;
   color: #78a4fa;
 }
-html body #home-section #segment-filter textarea::-webkit-input-placeholder {
+html body #home-section .segment-fields {
+  margin-bottom: 20px;
+}
+html body #home-section .segment-fields input[type=text] {
+  background: #23075c;
+  border: 1px solid #3d1396;
+  color: #78a4fa;
+}
+html body #home-section .segment-fields input[type=text]::-webkit-input-placeholder {
   color: #5d2ad4;
 }
-html body #home-section #segment-filter textarea:-moz-placeholder {
-  color: #2d097a;
+html body #home-section .segment-fields input[type=text]:-moz-placeholder {
+  color: #5d2ad4;
 }
-html body #home-section #segment-filter textarea::-moz-placeholder {
-  color: #2d097a;
+html body #home-section .segment-fields input[type=text]::-moz-placeholder {
+  color: #5d2ad4;
 }
-html body #home-section #segment-filter textarea:-ms-input-placeholder {
-  color: #2d097a;
+html body #home-section .segment-fields input[type=text]:-ms-input-placeholder {
+  color: #5d2ad4;
 }
-html body #home-section #segment-filter textarea {
+html body #home-section .segment-fields textarea::-webkit-input-placeholder {
+  color: #5d2ad4;
+}
+html body #home-section .segment-fields textarea:-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #home-section .segment-fields textarea::-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #home-section .segment-fields textarea:-ms-input-placeholder {
+  color: #5d2ad4;
+}
+html body #home-section .segment-fields textarea {
   background: #23075c;
   border: 1px solid #3d1396;
   color: #78a4fa;
 }
 html body #home-section #segment-container {
-  margin-top: 40px;
   width: 100%;
   height: auto;
   position: absolute;
@@ -264,23 +322,60 @@ html body #home-section #segment-container .segments {
   display: inline-block;
   zoom: 1;
   color: #2A1C6E;
-  background: #170D43;
+  background: #fff;
   width: 320px;
+  height: 370px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px none #000000;
+  -webkit-box-shadow: 0px 0px 114px -25px #7d38eb;
+  -moz-box-shadow: 0px 0px 114px -25px #7d38eb;
+  box-shadow: 0px 0px 114px -25px #7d38eb;
+}
+html body #home-section #segment-container .segments .segment-border {
+  width: 100%;
   height: 320px;
-  /*
-          -webkit-box-shadow: 1px 3px 72px 2px rgba(79,86,219,.3);
-          -moz-box-shadow: 1px 3px 72px 2px rgba(79,86,219,.3);
-          box-shadow: 1px 3px 72px 2px rgba(79,86,219,.3);
-          */
+  background: #170D43;
+  border: 1px solid #3d1396;
+  -webkit-box-shadow: 0px 29px 57px -30px #000000;
+  -moz-box-shadow: 0px 29px 57px -30px #000000;
+  box-shadow: 0px 29px 57px -30px #000000;
 }
 html body #home-section #segment-container .segments .segment-header {
   background: #200158;
   height: 40px;
   padding: 0;
   text-align: center;
-  color: #fff;
-  line-height: 40px;
+  color: #78a4fa;
+  line-height: 43px;
   text-transform: uppercase;
+  font-size: 13px;
+}
+html body #home-section #segment-container .segments .segment-header .help {
+  border: 1px solid #3d1396;
+  border-radius: 50px;
+  width: 25px;
+  height: 25px;
+  list-style: none;
+  color: #78a4fa;
+  float: left;
+  margin: 8px 10px 10px 10px;
+  position: absolute;
+}
+html body #home-section #segment-container .segments .segment-header .help [class^="icon-"]:before,
+html body #home-section #segment-container .segments .segment-header .help [class*=" icon-"]:before {
+  text-align: center;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  font-size: 12px;
+  vertical-align: 10px;
+  color: #78a4fa;
+}
+html body #home-section #segment-container .segments .segment-header .title {
+  text-align: center;
 }
 html body #home-section #segment-container .segments .segment-preborder {
   width: 100%;
@@ -293,12 +388,170 @@ html body #home-section #segment-container .segments .segment-visual-container {
   width: 280px;
   margin: 0 auto;
   overflow: hidden;
-  background: #5e318c;
-  background: -moz-linear-gradient(top, #5e318c 0%, #301d56 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #5e318c), color-stop(100%, #301d56));
-  background: -webkit-linear-gradient(top, #5e318c 0%, #301d56 100%);
-  background: -o-linear-gradient(top, #5e318c 0%, #301d56 100%);
-  background: -ms-linear-gradient(top, #5e318c 0%, #301d56 100%);
-  background: linear-gradient(to bottom, #5e318c 0%, #301d56 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e318c', endColorstr='#301d56', GradientType=0);
+  background: #68369e;
+  background: -moz-linear-gradient(top, #68369e 0%, #241445 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #68369e), color-stop(100%, #241445));
+  background: -webkit-linear-gradient(top, #68369e 0%, #241445 100%);
+  background: -o-linear-gradient(top, #68369e 0%, #241445 100%);
+  background: -ms-linear-gradient(top, #68369e 0%, #241445 100%);
+  background: linear-gradient(to bottom, #68369e 0%, #241445 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#68369e', endColorstr='#241445', GradientType=0);
+  -webkit-box-shadow: 0px -34px 0px -28px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 0px -34px 0px -28px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px -34px 0px -28px rgba(255, 255, 255, 0.2);
+}
+html body #home-section #segment-container .segments .footer {
+  margin: 20px 0 0 0px;
+  height: 40px;
+}
+html body #home-section #segment-container .segments .footer .datetime {
+  margin: 14px 0 0 5px;
+  float: left;
+}
+html body #home-section #segment-container .segments .footer .datetime [class^="icon-"]:before,
+html body #home-section #segment-container .segments .footer .datetime [class*=" icon-"]:before {
+  text-align: center;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  font-size: 16px;
+  color: #F85269;
+}
+html body #home-section #segment-container .segments .footer .datetime div {
+  margin: -18px 0 0 25px;
+  font-size: 11px;
+  color: #F85269;
+}
+html body #customer-service-section {
+  margin-left: 293px;
+  margin-top: 10px;
+  position: absolute;
+  width: calc(100% - 600px);
+  /* customize scrollbar css */
+}
+html body #customer-service-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #78a4fa;
+}
+html body #customer-service-section .scrollbar {
+  margin-top: 60px;
+  width: 100%;
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+html body #customer-service-section .scrollbar .post-container {
+  width: 900px;
+  height: 80px;
+  background: #241445;
+  background: #fff;
+  margin: 0 auto;
+  border-bottom: 1px solid lightgrey;
+  /*
+          border-radius: 10px 10px 10px 10px;
+          -moz-border-radius: 10px 10px 10px 10px;
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border: 0px solid #000000;
+          */
+}
+html body #customer-service-section .scrollbar .post-container .sentiment-holder {
+  width: 5px;
+  height: inherit;
+  background: #F85269;
+  float: left;
+}
+html body #customer-service-section .scrollbar .post-container .pic-holder {
+  width: 80px;
+  height: inherit;
+  float: left;
+}
+html body #customer-service-section .scrollbar .post-container .pic-holder .pic {
+  width: 40px;
+  height: 40px;
+  margin: 18px 18px;
+  overflow: hidden;
+  border-radius: 200px 200px 200px 200px;
+  -moz-border-radius: 200px 200px 200px 200px;
+  -webkit-border-radius: 200px 200px 200px 200px;
+  border: 1px solid #F85269;
+}
+html body #customer-service-section .scrollbar .post-container .pic-holder .pic img {
+  width: 42px;
+}
+html body #customer-service-section .scrollbar .post-container .name-holder {
+  float: left;
+  width: 200px;
+  height: inherit;
+  line-height: 75px;
+}
+html body #customer-service-section .scrollbar .post-container .name-holder span {
+  color: #78a4fa;
+}
+html body #customer-service-section .scrollbar .post-container .source-holder {
+  float: left;
+  width: 20px;
+  height: inherit;
+}
+html body #customer-service-section .scrollbar .post-container .source-holder [class^="icon-"]:before,
+html body #customer-service-section .scrollbar .post-container .source-holder [class*=" icon-"]:before {
+  width: 100%;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 3.3em;
+  margin-left: 0;
+  font-size: 23px;
+  color: #78a4fa;
+  height: 73px;
+}
+html body #customer-service-section .scrollbar .post-container .date-holder {
+  float: left;
+  width: 170px;
+  height: inherit;
+  line-height: 75px;
+  color: dimgrey;
+  text-align: center;
+  font-size: 12px;
+}
+html body #customer-service-section .scrollbar .post-container .text-holder {
+  float: left;
+  width: 300px;
+  height: inherit;
+  padding: 10px;
+  color: dimgrey;
+  font-size: 12px;
+}
+html body #customer-service-section .scrollbar .post-container .response-holder {
+  float: left;
+  height: inherit;
+}
+html body #customer-service-section .scrollbar .post-container .response-holder button {
+  margin: 20px 0 0 20px;
+}
+html body #customer-service-section #scrollbar-custom::-webkit-scrollbar {
+  width: 10px;
+  background-color: #23075c;
+}
+html body #customer-service-section #scrollbar-custom::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-track {
+  border: 1px #200158 solid;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px #78a4fa inset;
+}
+html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #200158;
+  border: 1px solid #4c12b8;
+  border-radius: 16px;
+}
+html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: #4c12b8;
+  border: 1px solid #78a4fa;
+}
+html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb:active {
+  background-color: #78a4fa;
+  border: 1px solid #78a4fa;
 }
