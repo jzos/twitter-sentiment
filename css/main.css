@@ -14,7 +14,8 @@ html body {
   /* HEADER */
   /* LEFT NAVIGATION */
   /* RIGHT NAVIGATION */
-  /* NEW DASHBOARD */
+  /* CREATE DASHBOARD */
+  /* SEGMENT DASHBOARDS */
   /* CUSTOMER SERVICE */
 }
 html body .container {
@@ -188,6 +189,12 @@ html body #leftNav-section .leftNavigationPage ul li [class*=" icon-"]:before {
   vertical-align: -4px;
   color: #e04159;
 }
+html body #leftNav-section .leftNavigationPage ul li a {
+  color: #78a4fa;
+}
+html body #leftNav-section .leftNavigationPage ul li a:hover {
+  color: #fff;
+}
 html body #rightNav-section {
   position: fixed;
   right: 0px;
@@ -256,6 +263,142 @@ html body #rightNav-section .bookmarksNav .bookmarks .button-save-holder {
   margin-top: 20px;
   float: left;
   width: 100%;
+}
+html body #create-dashboard-section {
+  margin-left: 293px;
+  margin-top: 10px;
+  position: absolute;
+  width: calc(100% - 600px);
+}
+html body #create-dashboard-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #78a4fa;
+}
+html body #create-dashboard-section .segment-fields {
+  margin-bottom: 20px;
+}
+html body #create-dashboard-section .segment-fields input[type=text] {
+  background: #23075c;
+  border: 1px solid #3d1396;
+  color: #78a4fa;
+}
+html body #create-dashboard-section .segment-fields input[type=text]::-webkit-input-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields input[type=text]:-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields input[type=text]::-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields input[type=text]:-ms-input-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields textarea::-webkit-input-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields textarea:-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields textarea::-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields textarea:-ms-input-placeholder {
+  color: #5d2ad4;
+}
+html body #create-dashboard-section .segment-fields textarea {
+  background: #23075c;
+  border: 1px solid #3d1396;
+  color: #78a4fa;
+}
+html body #create-dashboard-section #signup-container {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  text-align: justify;
+}
+html body #create-dashboard-section #signup-container .stretch {
+  width: 100%;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+}
+html body #create-dashboard-section #signup-container .signups {
+  display: inline-block;
+  zoom: 1;
+  color: #2A1C6E;
+  width: 280px;
+  height: 370px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 1px solid #3d1396;
+  -webkit-box-shadow: 0px 0px 114px -25px #7d38eb;
+  -moz-box-shadow: 0px 0px 114px -25px #7d38eb;
+  box-shadow: 0px 0px 114px -25px #7d38eb;
+  /*
+          background: rgba(73,155,234,1);
+          background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+          background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(31,106,186,1)));
+          background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+          background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+          background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+          background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#1f6aba', GradientType=0 );
+          */
+  background: #19003C;
+}
+html body #create-dashboard-section #signup-container .signups .icon-holder {
+  width: 100%;
+  height: 100px;
+}
+html body #create-dashboard-section #signup-container .signups .icon-holder .signup-icon {
+  width: 100px;
+  height: 100px;
+  margin: 25px auto;
+  border-radius: 200px 200px 200px 200px;
+  -moz-border-radius: 200px 200px 200px 200px;
+  -webkit-border-radius: 200px 200px 200px 200px;
+  border: 4px solid #e04159;
+}
+html body #create-dashboard-section #signup-container .signups .icon-holder .signup-icon [class^="icon-"]:before,
+html body #create-dashboard-section #signup-container .signups .icon-holder .signup-icon [class*=" icon-"]:before {
+  line-height: 1em;
+  margin: 21px;
+  font-size: 50px;
+  color: #e04159;
+}
+html body #create-dashboard-section #signup-container .signups h3.title {
+  text-align: center;
+  color: #78a4fa;
+}
+html body #create-dashboard-section #signup-container .signups p.description {
+  width: 86%;
+  margin-left: 7%;
+  margin-right: 7%;
+  line-height: 16px;
+  color: #78a4fa;
+  height: 50px;
+}
+html body #create-dashboard-section #signup-container .signups .background-holder {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 39px;
+  text-align: center;
+  border-radius: 0px 0px 10px 10px;
+  -moz-border-radius: 0px 0px 10px 10px;
+  -webkit-border-radius: 0px 0px 10px 10px;
+}
+html body #create-dashboard-section #signup-container .signups #innovation-signup {
+  background: url(/img/innovation-bg.png) -45px -20px no-repeat;
+}
+html body #create-dashboard-section #signup-container .signups #marketing-signup {
+  background: url(/img/marketing-bg.png) -55px 0px no-repeat;
+}
+html body #create-dashboard-section #signup-container .signups #customer-service-signup {
+  background: url(/img/customer-service-bg.png  ) -25px 0px no-repeat;
 }
 html body #home-section {
   margin-left: 293px;
@@ -435,8 +578,43 @@ html body #customer-service-section h2 {
   margin-bottom: 30px;
   color: #78a4fa;
 }
+html body #customer-service-section .complaint-stream-header {
+  background: #ddd;
+  width: 901px;
+  margin-left: 67px;
+  padding: 0;
+  margin-bottom: 0px;
+  height: 40px;
+  border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  border: 0px solid #000000;
+}
+html body #customer-service-section .complaint-stream-header li {
+  list-style: none;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 9px;
+  color: #407ded;
+}
+html body #customer-service-section .complaint-stream-header li.name {
+  width: 27%;
+}
+html body #customer-service-section .complaint-stream-header li.source {
+  width: 5%;
+}
+html body #customer-service-section .complaint-stream-header li.date {
+  width: 16%;
+}
+html body #customer-service-section .complaint-stream-header li.content {
+  width: 36%;
+}
+html body #customer-service-section .complaint-stream-header li.respond {
+  width: 16%;
+}
 html body #customer-service-section .scrollbar {
-  margin-top: 60px;
+  margin-top: 0px;
   width: 100%;
   height: 600px;
   overflow-y: auto;

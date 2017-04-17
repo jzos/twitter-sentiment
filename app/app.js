@@ -5,11 +5,20 @@
         .module('app', [
             'ngRoute',
             'ngCookies',
-            'graphs.d3graphs'
+            'utils.d3graphs',
+            'utils.requestAPI'
         ])
         .config(config)
+        // This gets rid of the #!, hashtag and bang, in the URL and allows pretty print URLs
+
+        .config(['$locationProvider', function($locationProvider) {
+            $locationProvider.hashPrefix('');
+            //$locationProvider.html5Mode(true);
+
+        }])
         .run(run)
         .controller('MainCtrl', ['$scope', MainCtrl]);
+
 
     config.$inject = ['$routeProvider', '$locationProvider'];
 
@@ -57,6 +66,9 @@
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
+
+
+
 
     function run($rootScope, $location, $cookieStore, $http) {
         // keep user logged in after page refresh

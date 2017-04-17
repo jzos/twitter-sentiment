@@ -326,6 +326,6 @@
         };
     }
 
-    angular.module('graphs.d3graphs', [])
+    angular.module('utils.d3graphs', [])
         .factory('D3Graphs', D3Graphs);
 })();
