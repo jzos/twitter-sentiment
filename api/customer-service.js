@@ -49,7 +49,7 @@ app.get('/api/complaint-stream', function (req, res, next) {
 
     //find records
     dbs.collection('dealerships', function(err, collection) {
-        collection.find().limit(2).toArray(function(err, items) {
+        collection.find().limit(20).sort({x:-1}).toArray(function(err, items) {
             console.log(items);
             res.send(req.query.callback + '('+ JSON.stringify(items) + ');');
         });
