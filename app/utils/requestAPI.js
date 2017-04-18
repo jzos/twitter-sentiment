@@ -4,9 +4,21 @@
     function RequestAPI() {
         return {
 
-            loadURL: function (sPath, callback) {
-
-
+            loadURL: function (sURL, callback, callbackError) {
+                $.ajax({
+                    type: "GET",
+                    url: sURL,
+                    data: "",
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    jsonpCallback: 'jsonpCallback',
+                    success: function(data){
+                        callback(data);
+                    },
+                    error: function(error){
+                        callbackError(error);
+                    }
+                });
             }
 
 

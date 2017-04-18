@@ -1,0 +1,4 @@
+<!-- not sure if you need this -->
+<widget>
+    <access origin="*" />
+</widget>

@@ -9,6 +9,22 @@ var MongoClient         = require('mongodb').MongoClient
 
 app.listen(process.env.PORT || 5005);
 
+/*
+app.use(function(req,res,next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+});
+*/
+
 console.log("Running at Port 5005");
 
 var dbs = {};
@@ -21,7 +37,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/automotive', function(err, db) {
     dbs = db;
 });
 
-
+app.set("jsonp callback", true);
 
 
 app.use('/api/complaint-stream', function (req, res, next) {
@@ -35,7 +51,7 @@ app.get('/api/complaint-stream', function (req, res, next) {
     dbs.collection('dealerships', function(err, collection) {
         collection.find().limit(2).toArray(function(err, items) {
             console.log(items);
-            res.send(items);
+            res.send(req.query.callback + '('+ JSON.stringify(items) + ');');
         });
     });
 
