@@ -6,7 +6,8 @@
             'ngRoute',
             'ngCookies',
             'utils.d3graphs',
-            'utils.requestAPI'
+            'utils.requestAPI',
+            'utils.utilities'
         ])
         .config(config)
         // This gets rid of the #!, hashtag and bang, in the URL and allows pretty print URLs

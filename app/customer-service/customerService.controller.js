@@ -5,43 +5,37 @@
         .module('app')
         .controller('CustomerServiceController', CustomerServiceController);
 
-    CustomerServiceController.$inject = ['UserService', '$rootScope','D3Graphs', 'RequestAPI','$http'];
-    function CustomerServiceController(UserService, $rootScope, D3Graphs, RequestAPI, $http) {
-
+    CustomerServiceController.$inject = ['UserService', '$rootScope','D3Graphs', 'RequestAPI','$scope',"$timeout","Utilities","$http","$sce"];
+    function CustomerServiceController(UserService, $rootScope, D3Graphs, RequestAPI, $scope, $timeout,Utilities,$http,$sce) {
 
         initController();
+
+        function initController()
+        {
+            loadComplaintStream();
+        }
+
+        function loadComplaintStream()
+        {
+            RequestAPI.loadURL("http://localhost:5005/api/complaint-stream", populateComplaintStream, failureCallback);
+            Utilities.watchBinding("populateComplaintStream", populateComplaintStream, 1000, $scope, $timeout);
+        }
 
         function populateComplaintStream(data)
         {
             console.log(data);
+            $scope.items = data;
         }
 
-        function initController() {
-            //loadComplaintStream();
-        }
-
-        function test(data)
+        function failureCallback(data)
         {
-            console.log(data);
+            console.log("Error: " + data);
         }
 
-        RequestAPI.loadURL("http://localhost:5005/api/complaint-stream", populateComplaintStream, test);
 
-        /*
-        $.ajax({
-            url: 'http://localhost:5005/api/complaint-stream',
-            data: "",
-            dataType: 'jsonp',
-            jsonp: 'callback',
-            jsonpCallback: 'jsonpCallback',
-            success: function(data){
-                test(data);
-            },
-            error: function(error){
-                console.log("error: " + error);
-            }
-        });
-        */
+
+
+
 
 
 

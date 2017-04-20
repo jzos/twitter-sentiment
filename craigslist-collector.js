@@ -77,7 +77,7 @@ function getPosts(arrayPosts)
                     "media_url": img
                 }]
             },
-            "source": "craigslist"
+            "data_source": "craigslist"
         };
 
 

@@ -13,10 +13,10 @@ var merge               = require('merge'), original, cloned;
 var Twit = require('twit');
 
 var T = new Twit({
-    consumer_key: 'zrygVD3bcdopRZLeUsRZzsfQd',
-    consumer_secret: 'Xan82IfcwSdDctsidGjkRzqD0CGbQ9MMPZeaROfldDH2EYrABm',
-    access_token: '19669840-ipMlfY9C6MuajkGYm9EZaF9cG03GUKQUqDYYgvV0l',
-    access_token_secret: 'f7qbiBYV06WLcFpNUL2KEIoU71Equ4jb9a9jIrSKiszdt',
+    consumer_key: 'RWa11rM6eyvgNzbC5WgFfeBWH',
+    consumer_secret: 'hmCsctUWRC55CjQ1ZDNrzHnGeJiou5kkIoqmYjQFtDpcqjnLn0',
+    access_token: '19669840-6KOtUhSnKqwknnBSg2XTorG7v1uu4XXliAEhJyPTS',
+    access_token_secret: 'H4O2BLfly5RNhho79DuX1fqwhf7Fdx7MPdIf3HmP3Zhp3',
     timeout_ms:           6000*1000  // optional HTTP request timeout to apply to all requests.
 })
 
@@ -34,7 +34,6 @@ var dbs = {};
 
 
 MongoClient.connect('mongodb://127.0.0.1:27017/automotive', function(err, db) {
-//MongoClient.connect('mongodb://mongoapp:kill129999@ds135969-a0.mlab.com:35969,ds135969-a1.mlab.com:35969/heroku_9sw52m8z?replicaSet=rs-ds135969', function(err, db) {
     if (err) throw err;
     console.log("Connected to Database");
 
@@ -60,7 +59,8 @@ T.get('account/verify_credentials', { skip_status: true })
     })
 
 
-sAutomotive = 'hyundai sucks,dealership sucks,ford sucks,mazda sucks,dodge sucks,toyota sucks,nissan sucks,dealership horrible,dealership service,buying car dealership,buying truck dealership,Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,rush chevrolet,covert ford,maxwell ford,truck city ford,south point dodge,nyle maxwell,covert dodge,Charles Maund Toyota,AutoNation Toyota,Round Rock Toyota,Roger Beasley Mazda,South Point Hyundai,Howdy Honda,Town North Nissan,msrp car,msrp truck,buy new car,buy new truck,buy used car,buy used truck,car loan, truck loan,vehicle loan,automotive loan';
+sAutomotive = 'hyundai sucks,dealership sucks,ford sucks,mazda sucks,dodge sucks,toyota sucks,nissan sucks,dealership horrible,dealership service,buying car dealership,buying truck dealership,Capitol Chevrolet,Covert Chevrolet,Auto Nation Chevrolet,henna Chevrolet,rush chevrolet,covert ford,maxwell ford,truck city ford,south point dodge,nyle maxwell,covert dodge,Charles Maund Toyota,AutoNation Toyota,Round Rock Toyota,Roger Beasley Mazda,South Point Hyundai,Howdy Honda,Town North Nissan,msrp car,msrp truck,buy new car,buy new truck,buy used car,buy used truck,car loan, truck loan,vehicle loan,automotive loan, new truck, new car';
+
 
 var stream = T.stream('statuses/filter', { track: sAutomotive, language: 'en' });
 
@@ -75,7 +75,12 @@ stream.on('tweet', function (tweet) {
     var r1              = sentiment(tweet.text);
     var dataRecord      = merge(tweet,r1);
 
-    console.log(dataRecord);
+    var jsondatasource  = {data_source : "twitter"};
+    dataRecord          = merge(tweet,jsondatasource);
+
+    //console.log(dataRecord);
+    console.log(tweet["created_at"]);
+    console.log(tweet["text"]);
 
     //insert record
     dbs.collection('dealerships').insert(dataRecord, function(err, records) {
