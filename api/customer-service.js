@@ -10,7 +10,7 @@ var MongoClient         = require('mongodb').MongoClient
 app.listen(process.env.PORT || 5005);
 
 
-/*
+
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -25,7 +25,7 @@ app.use(function(req,res,next){
     }
 });
 
-*/
+
 
 
 console.log("Running at Port 5005");
