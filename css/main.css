@@ -11,6 +11,7 @@ html body {
   padding: 0;
   /* Main Container */
   /* LOGIN PAGE */
+  /* REGISTER PAGE */
   /* HEADER */
   /* LEFT NAVIGATION */
   /* RIGHT NAVIGATION */
@@ -75,6 +76,38 @@ html body .login-page .form .btn-primary {
 }
 html body .login-page .form label {
   color: #fff;
+}
+html body #register-page {
+  display: inline-block;
+  zoom: 1;
+  color: #2A1C6E;
+  margin-top: 100px;
+  padding-bottom: 20px;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 1px solid #3d1396;
+  -webkit-box-shadow: 0px 0px 114px -25px #7d38eb;
+  -moz-box-shadow: 0px 0px 114px -25px #7d38eb;
+  box-shadow: 0px 0px 114px -25px #7d38eb;
+  /*
+      background: rgba(73,155,234,1);
+      background: -moz-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+      background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(31,106,186,1)));
+      background: -webkit-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+      background: -o-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+      background: -ms-linear-gradient(top, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+      background: linear-gradient(to bottom, rgba(73,155,234,1) 0%, rgba(31,106,186,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#1f6aba', GradientType=0 );
+      */
+  background: #200158;
+}
+html body #register-page h2 {
+  text-align: center;
+  color: #78a4fa;
+}
+html body #register-page form label {
+  color: #78a4fa;
 }
 html body #header-section {
   background: #300580;

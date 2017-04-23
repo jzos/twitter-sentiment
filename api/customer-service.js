@@ -3,10 +3,11 @@
  */
 
 
-var express = require('express');
-var compression = require('compression')
+var express                 = require('express');
+var compression             = require('compression')
+var app                     = express();
 
-var app = express();
+
 app.set('port', process.env.PORT || 5005);
 app.set('host', process.env.HOST || 'platform.symamp.com');
 
@@ -14,7 +15,7 @@ app.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('host') + ':' + app.get('port'));
 });
 
-app.use(compression())
+app.use(compression());
 
 
 var MongoClient         = require('mongodb').MongoClient
