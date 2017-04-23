@@ -5,10 +5,6 @@
 var sentiment           = require('sentiment');
 var merge               = require('merge'), original, cloned;
 
-//var express             = require('express');
-//var app = express();
-//app.set('port', (process.env.PORT || 5000));
-
 
 var Twit = require('twit');
 
@@ -27,10 +23,6 @@ var MongoClient = require('mongodb').MongoClient
 
 
 var dbs = {};
-
-
-//connect away
-
 
 
 MongoClient.connect('mongodb://127.0.0.1:27017/automotive', function(err, db) {
@@ -70,17 +62,18 @@ stream.on('tweet', function (tweet) {
 
     var date = tweet.created_at;
 
+    // convert twitter date format to ISODate
     tweet["created_at"] = new Date(Date.parse(date.replace(/( \+)/, ' UTC$1')));
 
     var r1              = sentiment(tweet.text);
     var dataRecord      = merge(tweet,r1);
 
     var jsondatasource  = {data_source : "twitter"};
+    var sPostURL        = {postURL : "https://twitter.com/" + tweet.user.screen_name + " /status/" + tweet.id_str};
+    dataRecord          = merge(tweet, sPostURL);
     dataRecord          = merge(tweet,jsondatasource);
 
-    //console.log(dataRecord);
     console.log(tweet["created_at"]);
-    console.log(tweet["text"]);
 
     //insert record
     dbs.collection('dealerships').insert(dataRecord, function(err, records) {

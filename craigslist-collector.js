@@ -60,16 +60,18 @@ function getPosts(arrayPosts)
         var long = $("#map").attr("data-longitude");
         var lat = $("#map").attr("data-latitude");
         var img = $(".gallery img").first().attr("src");
-        var date = $(".timeago").attr("datetime") + "Z";
         var source = "craigslist";
         var postURL = "https://austin.craigslist.org" + arrayPosts[iAmount];
         var coordinates = {coordinates: [long, lat]};
 
+        // timedate conversion to ISO date
+        var sCraigslistDate = Date.parse($(".timeago").attr("datetime"));
+        var ISODate = new Date(sCraigslistDate).toISOString();
 
         jsonDoc = {
             "id": id,
             "text": text,
-            "created_at": date,
+            "created_at": ISODate,
             "postURL": postURL,
             "coordinates": coordinates,
             "entities": {
