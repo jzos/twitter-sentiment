@@ -39,7 +39,7 @@ request("https://austin.craigslist.org/search/cto", function (error, response, h
         //getPosts($(this).find("a").attr("href"));
     })
 
-    timerPost = setInterval(getPosts, 10000, arrayPosts);
+    timerPost = setInterval(getPosts, 500, arrayPosts);
 
 });
 
@@ -66,7 +66,7 @@ function getPosts(arrayPosts)
 
         // timedate conversion to ISO date
         var sCraigslistDate = Date.parse($(".timeago").attr("datetime"));
-        var ISODate = new Date(sCraigslistDate).toISOString();
+        var ISODate = new Date(sCraigslistDate);
 
         jsonDoc = {
             "id": id,

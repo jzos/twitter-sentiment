@@ -734,6 +734,18 @@ html body #customer-service-section .scrollbar .post-container .source-holder [c
   color: #78a4fa;
   height: 73px;
 }
+html body #customer-service-section .scrollbar .post-container .source-holder [class^="iconc-"]:before,
+html body #customer-service-section .scrollbar .post-container .source-holder [class*=" iconc-"]:before {
+  width: 100%;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 3.3em;
+  margin-left: 0;
+  font-size: 23px;
+  color: #78a4fa;
+  height: 73px;
+}
 html body #customer-service-section .scrollbar .post-container .date-holder {
   float: left;
   width: 170px;

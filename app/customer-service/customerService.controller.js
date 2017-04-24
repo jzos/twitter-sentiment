@@ -5,8 +5,8 @@
         .module('app')
         .controller('CustomerServiceController', CustomerServiceController);
 
-    CustomerServiceController.$inject = ['UserService', '$rootScope','D3Graphs', 'RequestAPI','$scope',"$timeout","Utilities","$http","$sce"];
-    function CustomerServiceController(UserService, $rootScope, D3Graphs, RequestAPI, $scope, $timeout,Utilities,$http,$sce) {
+    CustomerServiceController.$inject = ['UserService', '$rootScope','D3Graphs', 'RequestAPI','$scope',"$timeout","Utilities"];
+    function CustomerServiceController(UserService, $rootScope, D3Graphs, RequestAPI, $scope, $timeout,Utilities) {
 
         initController();
 
@@ -17,7 +17,7 @@
 
         function loadComplaintStream()
         {
-            RequestAPI.loadURL("http://localhost:5005/api/complaint-stream", populateComplaintStream, failureCallback);
+            RequestAPI.loadURL("http://platform.symamp.com:5005/api/complaint-stream", populateComplaintStream, failureCallback);
             Utilities.watchBinding("populateComplaintStream", populateComplaintStream, 3000, $scope, $timeout);
         }
 
