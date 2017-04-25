@@ -73,16 +73,20 @@ stream.on('tweet', function (tweet) {
     dataRecord          = merge(tweet, sPostURL);
     dataRecord          = merge(tweet,jsondatasource);
 
-    console.log(tweet["created_at"]);
-
-    //insert record
-    dbs.collection('dealerships').insert(dataRecord, function(err, records) {
-        if (err) throw err;
-        console.log("Record added as "+records.ops[0]._id);
-    });
-
-
     console.log("*************************************");
+    console.log("text : " + dataRecord.text);
+
+    if (dataRecord.text.indexOf("RT") == -1)
+    {
+
+        //insert record
+        dbs.collection('dealerships').insert(dataRecord, function (err, records) {
+            if (err) throw err;
+            console.log("Record added as " + records.ops[0]._id);
+        });
+
+    }
+
 
 })
 
