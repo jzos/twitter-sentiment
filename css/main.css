@@ -393,14 +393,14 @@ html body #create-dashboard-section #signup-container .signups .icon-holder .sig
   border-radius: 200px 200px 200px 200px;
   -moz-border-radius: 200px 200px 200px 200px;
   -webkit-border-radius: 200px 200px 200px 200px;
-  border: 4px solid #e04159;
+  /*border: 4px solid @redDark; */
 }
 html body #create-dashboard-section #signup-container .signups .icon-holder .signup-icon [class^="icon-"]:before,
 html body #create-dashboard-section #signup-container .signups .icon-holder .signup-icon [class*=" icon-"]:before {
   line-height: 1em;
   margin: 21px;
   font-size: 50px;
-  color: #e04159;
+  color: #4c12b8;
 }
 html body #create-dashboard-section #signup-container .signups h3.title {
   text-align: center;
