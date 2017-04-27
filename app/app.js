@@ -60,6 +60,11 @@
                 templateUrl: '/app/customer-service/customerService.view.html',
                 controllerAs: 'vm'
             })
+            .when('/publish', {
+                controller: 'PublishController',
+                templateUrl: '/app/publish/publish.view.html',
+                controllerAs: 'vm'
+            })
 
             .otherwise({ redirectTo: '/login' });
 

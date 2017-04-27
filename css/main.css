@@ -350,6 +350,7 @@ html body #create-dashboard-section #signup-container {
   height: auto;
   position: absolute;
   text-align: justify;
+  margin-bottom: 40px;
 }
 html body #create-dashboard-section #signup-container .stretch {
   width: 100%;
@@ -363,6 +364,7 @@ html body #create-dashboard-section #signup-container .signups {
   color: #2A1C6E;
   width: 280px;
   height: 370px;
+  margin-bottom: 25px;
   border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
   -webkit-border-radius: 10px 10px 10px 10px;

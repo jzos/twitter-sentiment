@@ -1,0 +1,92 @@
+
+<div id="header-section">
+    <ng-include src="'/app/header/header.view.html'"></ng-include>
+</div>
+<div id="leftNav-section">
+    <ng-include src="'/app/leftNavigation/leftNavigation.view.html'"></ng-include>
+</div>
+
+<form name="form" ng-submit="vm.login()" role="form" class="form">
+
+<div id="create-dashboard-section">
+
+    <h2>Publish Marketing Campaign</h2>
+
+
+
+    <div class="segment-fields">
+        <input type="text" class="form-control" placeholder="Enter Title of Campaign"  ng-model="vm.title">
+    </div>
+
+    <div class="segment-fields">
+        <textarea class="form-control" rows="6" placeholder="Type in content here..." ></textarea>
+    </div>
+
+
+    <div class="segment-fields">
+
+
+
+        <div class="form-group">
+            <input id="publish-image" type="file" class="file" data-upload-url="#">
+
+            <script>
+                $("#publish-image").fileinput({
+                    allowedFileExtensions: ["jpg", "png", "gif"]
+                })
+            </script>
+
+
+
+        </div>
+
+        <div class="form-group">
+            <input id="publish-video" type="file" class="file" data-upload-url="#">
+
+            <script>
+                $("#publish-video").fileinput({
+                    allowedFileExtensions: ["avi", "mov", "mp4"]
+                })
+            </script>
+
+        </div>
+
+        <div class="form-group">
+
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+</form>
+
+<div id="rightNav-section">
+    <ng-include src="'/app/bookmarks/bookmarks.view.html'"></ng-include>
+</div>
+
+
+
+
+<!--
+
+<h1>Hi {{vm.user.firstName}}!</h1>
+<p>You're logged in!!</p>
+<h3>All registered users:</h3>
+<ul>
+    <li ng-repeat="user in vm.allUsers">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a ng-click="vm.deleteUser(user.id)">Delete</a>
+    </li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="#!/login" class="btn btn-primary">Logout</a></p>
+
+
+
+-->

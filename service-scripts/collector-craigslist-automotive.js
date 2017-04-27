@@ -39,7 +39,7 @@ request("https://austin.craigslist.org/search/cto", function (error, response, h
         //getPosts($(this).find("a").attr("href"));
     })
 
-    timerPost = setInterval(getPosts, 500, arrayPosts);
+    timerPost = setInterval(getPosts, 20000, arrayPosts);
 
 });
 
