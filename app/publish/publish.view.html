@@ -6,7 +6,8 @@
     <ng-include src="'/app/leftNavigation/leftNavigation.view.html'"></ng-include>
 </div>
 
-<form name="form" ng-submit="vm.login()" role="form" class="form">
+<!--<form name="form" method="post" enctype="multipart/form-data" action="api/twitter-publish" role="form" class="form">-->
+<form ng-submit="submitForm()">
 
 <div id="create-dashboard-section">
 
@@ -15,11 +16,11 @@
 
 
     <div class="segment-fields">
-        <input type="text" class="form-control" placeholder="Enter Title of Campaign"  ng-model="vm.title">
+        <input type="text" class="form-control" placeholder="Enter Title of Campaign"  ng-model="user.title" name="title">
     </div>
 
     <div class="segment-fields">
-        <textarea class="form-control" rows="6" placeholder="Type in content here..." ></textarea>
+        <textarea class="form-control" rows="6" placeholder="Type in content here..." ng-model="user.content" name="content"></textarea>
     </div>
 
 
@@ -27,25 +28,30 @@
 
 
 
-        <div class="form-group">
-            <input id="publish-image" type="file" class="file" data-upload-url="#">
+        <div class="form-group" id="publish-image-container">
 
+            <input id="publish-image" class="file"  type="file" name="publish_image" placeholder="Upload Image"  multiple onchange="angular.element(this).scope().getFileDetails(this)">
             <script>
                 $("#publish-image").fileinput({
-                    allowedFileExtensions: ["jpg", "png", "gif"]
+                    allowedFileExtensions: ["png", "jpeg", "gif", "jpg"],
+                    showUpload: false,
+                    maxFileSize: 3000
                 })
             </script>
 
 
 
+
         </div>
 
-        <div class="form-group">
-            <input id="publish-video" type="file" class="file" data-upload-url="#">
+        <div class="form-group" id="publish-video-container">
+            <input  type="file" id="publish-video" class="file" name="publish_video" placeholder="Upload Video" ng-model="user.video">
 
             <script>
                 $("#publish-video").fileinput({
-                    allowedFileExtensions: ["avi", "mov", "mp4"]
+                    allowedFileExtensions: ["avi", "mov", "mp4"],
+                    showUpload: false,
+                    dropZoneTitle: "Drag and drop videos here"
                 })
             </script>
 
@@ -69,24 +75,3 @@
 <div id="rightNav-section">
     <ng-include src="'/app/bookmarks/bookmarks.view.html'"></ng-include>
 </div>
-
-
-
-
-<!--
-
-<h1>Hi {{vm.user.firstName}}!</h1>
-<p>You're logged in!!</p>
-<h3>All registered users:</h3>
-<ul>
-    <li ng-repeat="user in vm.allUsers">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a ng-click="vm.deleteUser(user.id)">Delete</a>
-    </li>
-</ul>
-<p>&nbsp;</p>
-<p><a href="#!/login" class="btn btn-primary">Logout</a></p>
-
-
-
--->
