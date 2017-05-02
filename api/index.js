@@ -9,10 +9,64 @@ var app                     = express();
 var Twit                    = require('twit');
 var bodyParser              = require('body-parser');
 
+var formidable = require('formidable'),
+    http = require('http'),
+    util = require('util');
 
 
 
 
+http.createServer(function(req, res) {
+    if (req.url == '/api/twitter-publish' && req.method.toLowerCase() == 'post')
+    {
+        // parse a file upload
+        var form = new formidable.IncomingForm();
+
+        form.on('field', function(name, value)
+        {
+
+            //console.log("Field Name : " + name);
+
+        });
+
+
+
+
+        form.on('file', function(name, file) {
+
+            //console.log("File Name : " + name + " : " + file)
+
+        });
+
+
+        form.parse(req, function(err, fields, files)
+        {
+
+            console.log(util.inspect({fields: fields, files: files}));
+
+            res.writeHead(200, {'content-type': 'text/plain'});
+            res.write('received upload:\n\n');
+            res.end(util.inspect({fields: fields, files: files}));
+        });
+
+        return;
+    }
+
+    // show a file upload form
+    res.writeHead(200, {'content-type': 'text/html'});
+    res.end(
+        '<form action="/upload" enctype="multipart/form-data" method="post">'+
+        '<input type="text" name="title"><br>'+
+        '<input type="file" name="upload" multiple="multiple"><br>'+
+        '<input type="submit" value="Upload">'+
+        '</form>'
+    );
+}).listen(5005);
+
+
+
+
+/*
 
 app.set('port', process.env.PORT || 5005);
 app.set('host', process.env.HOST || 'localhost');
@@ -79,6 +133,7 @@ app.get('/api/complaint-stream', function (req, res, next) {
     });
 });
 
+*/
 
 
 
@@ -92,6 +147,7 @@ app.get('/api/complaint-stream', function (req, res, next) {
 
 
 
+/*
 
 app.use('/api/twitter-publish', function (req, res, next) {
     console.log('Request Type:', req.method);
@@ -103,15 +159,23 @@ app.use(bodyParser.text({ type: "application/x-www-form-urlencoded", limit: "5mb
 
 app.post('/api/twitter-publish', function (req, res) {
 
-    console.log(req.body);
+    //console.log(req.body);
 
     //console.log(req.body.title);
+
+    var form = new formidable.IncomingForm();
+
+    form.parse(req, function(err, fields, files) {
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.write('received upload:\n\n');
+        res.end(util.inspect({fields: fields, files: files}));
+    });
 
 
     res.send("Parsing");
 
 
-/*
+/!*
 
 
     T.post('statuses/update', { status: 'First post from publishing app!' }, function(err, data, response) {
@@ -151,13 +215,14 @@ app.post('/api/twitter-publish', function (req, res) {
     T.postMediaChunked({ file_path: filePath }, function (err, data, response) {
         console.log(data)
     })
-*/
+*!/
 
 
 
 
 });
 
+*/
 
 
 
@@ -184,6 +249,11 @@ var T = new Twit({
     access_token_secret: 't470e3VGiuvxNlJ0nWXNTpkfMNkBt0fKegIi4Y7V8ixyW',
     timeout_ms:           6000*1000  // optional HTTP request timeout to apply to all requests.
 })
+
+
+
+
+
 
 
 

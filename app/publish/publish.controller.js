@@ -163,7 +163,8 @@
                 type: "POST",
                 data: new FormData(formElement),
                 processData: false,  // tell jQuery not to process the data
-                contentType: "application/x-www-form-urlencoded",   // tell jQuery not to set contentType
+                //contentType: "application/x-www-form-urlencoded",   // tell jQuery not to set contentType
+                contentType: false,   // tell jQuery not to set contentType
                 success: function(data){
                     console.log(data);
                 },
