@@ -26,7 +26,7 @@ var formidable              = require('formidable'),
 
 
 app.set('port', process.env.PORT || 5005);
-app.set('host', process.env.HOST || 'localhost');
+app.set('host', process.env.HOST || 'platform.symamp.com');
 
 app.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('host') + ':' + app.get('port'));
@@ -103,7 +103,7 @@ app.get('/api/complaint-stream', function (req, res, next) {
 
 
 
-http.createServer(function(req, res) {
+var server = http.createServer(function(req, res) {
 
 
     res.setHeader('Access-Control-Allow-Origin', "*");
@@ -334,12 +334,7 @@ http.createServer(function(req, res) {
     }  // END OF TWITTER PUBLISH
 
 
-
-
-
-
-
-}).listen(5006);
+}).listen(5006, 'platform.symamp.com');
 
 
 
