@@ -13,7 +13,11 @@
 
     <h2>Publish Marketing Campaign</h2>
 
-
+    <div class="segment-fields" id="success-message">
+        <div class="alert alert-success" role="alert">
+            You have successfull posted your content! <a href="" class="alert-link" ng-click="clearPage()">Click here to post more content.</a>
+        </div>
+    </div>
 
     <div class="segment-fields">
         <input type="text" class="form-control" placeholder="Enter Title of Campaign"  ng-model="user.title" name="title">
@@ -49,7 +53,7 @@
 
             <script>
                 $("#publish-video").fileinput({
-                    allowedFileExtensions: ["avi", "mov", "mp4"],
+                    allowedFileExtensions: ["avi", "mov", "mp4", "m4v"],
                     showUpload: false,
                     dropZoneTitle: "Drag and drop videos here"
                 })

@@ -5,8 +5,16 @@
         .module('app')
         .controller('PublishController', PublishController);
 
-    PublishController.$inject = ['UserService', '$rootScope','D3Graphs', 'RequestAPI','$scope',"$timeout","Utilities","$http"];
-    function PublishController(UserService, $rootScope, D3Graphs, RequestAPI, $scope, $timeout,Utilities,$http) {
+    PublishController.$inject = ['UserService', '$rootScope','D3Graphs', 'RequestAPI','$scope',"$timeout","Utilities","$http","$route"];
+    function PublishController(UserService, $rootScope, D3Graphs, RequestAPI, $scope, $timeout,Utilities,$http, $route) {
+
+
+        $("#success-message").hide();
+
+        function showSuccessMessage()
+        {
+            $("#success-message").show();
+        }
 
         $scope.submitForm = function()
         {
@@ -21,13 +29,22 @@
                 //contentType: "application/x-www-form-urlencoded",   // tell jQuery not to set contentType
                 contentType: false,   // tell jQuery not to set contentType
                 success: function(data){
-                    console.log(data);
+
+                    showSuccessMessage();
                 },
                 error: function(error){
                     console.log(error);
                 }
             });
 
+        }
+
+
+
+
+        $scope.clearPage = function()
+        {
+            $route.reload();
         }
 
 

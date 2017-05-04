@@ -8,6 +8,7 @@ var compression             = require('compression')
 var app                     = express();
 var Twit                    = require('twit');
 var bodyParser              = require('body-parser');
+var fs                      = require("fs");
 
 /*
 *
@@ -105,100 +106,236 @@ app.get('/api/complaint-stream', function (req, res, next) {
 http.createServer(function(req, res) {
 
 
+    res.setHeader('Access-Control-Allow-Origin', "*");
+    res.setHeader('Access-Control-Allow-Methods', "GET,PUT,POST,DELETE,OPTIONS");
+    res.setHeader('Access-Control-Allow-Headers', "Content-Type, Authorization, Content-Length, X-Requested-With");
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method)
+    {
+        res.send(200);
+    }
+
+
     if (req.url == '/api/twitter-publish' && req.method.toLowerCase() == 'post')
     {
-        // parse a file upload
+
+        var sTitle              = "";
+        var sContent            = "";
+        var sImgPath            = "";
+        var sImgAltText         = "";
+        var sVideoTmpPath       = "";
+
+        var sVideoLocalPath     = "";
+        var videoTmpDir         = (require('path').dirname(Object.keys(require.cache)[0])).replace("api","tmp-video/");
+
+
+
         var form = new formidable.IncomingForm();
 
+
+        // Parses field information
         form.on('field', function(name, value)
         {
 
-            console.log("Field Name : " + name);
+            if (name == "content")
+            {
+                sContent = value;
+            }
 
         });
 
 
+        // Parses image and video information
+        form.on('file', function(name, file)
+        {
 
+            //console.log("Field Name : " + name + "     FilePath : " + file.path + "     File Name : " + file.name);
 
-        form.on('file', function(name, file) {
+            if (name == "publish_image" && file.name.length > 0)
+            {
+                sImgPath            = file.path;
+                sImgAltText         = file.name;
+            }
 
-            //console.log("File Name : " + name + " : " + file)
-
+            if (name == "publish_video" && file.name.length > 0)
+            {
+                sVideoTmpPath       = file.path;
+                sVideoLocalPath     = videoTmpDir + file.name;
+            }
         });
 
 
         form.parse(req, function(err, fields, files)
         {
 
-            console.log(util.inspect({fields: fields, files: files}));
+            //console.log(util.inspect({fields: fields, files: files}));
 
-            res.writeHead(200, {'content-type': 'text/plain'});
-            res.write('received upload:\n\n');
-            res.end(util.inspect({fields: fields, files: files}));
+            postToTwitter(sContent, sImgPath, sImgAltText, sVideoTmpPath, sVideoLocalPath, res);
+
+
+
         });
 
-        return;
-    }
 
 
 
-    /*
-     *
-     * Account : AustinAutodeals
-     * App Name : Austin TX Automotive
-     *
-     */
 
-    /*
-     var T = new Twit({
-     consumer_key: 'f0ySOZ0qUE3hBoOCfNnmDlOD1',
-     consumer_secret: 'vqcQ11Dnd98MoQqdgaLVny58TwW2dy5QoWyxcd21oPrKqlF618',
-     access_token: '857017093463715840-wgDrRnFxxre7TSEgI1Doqby586hx0Aj',
-     access_token_secret: 't470e3VGiuvxNlJ0nWXNTpkfMNkBt0fKegIi4Y7V8ixyW',
-     timeout_ms:           6000*1000  // optional HTTP request timeout to apply to all requests.
-     })
+        /*
+         *
+         * Account : AustinAutodeals
+         * App Name : Austin TX Automotive
+         *
+         */
+
+        function postToTwitter(content, imagePath, imageAltText, videoTmpPath, videoLocalPath, response)
+        {
 
 
 
-     T.post('statuses/update', { status: 'First post from publishing app!' }, function(err, data, response) {
-     console.log(data)
-     })
+            //console.log("  Content : " + content.length + "    Image Path: " + imagePath.length + "     Video Path: " + videoPath.length);
+
+            var T = new Twit({
+                consumer_key: 'f0ySOZ0qUE3hBoOCfNnmDlOD1',
+                consumer_secret: 'vqcQ11Dnd98MoQqdgaLVny58TwW2dy5QoWyxcd21oPrKqlF618',
+                access_token: '857017093463715840-wgDrRnFxxre7TSEgI1Doqby586hx0Aj',
+                access_token_secret: 't470e3VGiuvxNlJ0nWXNTpkfMNkBt0fKegIi4Y7V8ixyW',
+                timeout_ms:           6000*1000  // optional HTTP request timeout to apply to all requests.
+            })
+
+            ////////////// POST CONTENT //////////////////
+
+            if (content.length > 0 && imagePath.length == 0 && videoTmpPath.length == 0)
+            {
+
+                T.post('statuses/update', { status: content }, function(err, data, response)
+                {
+                    console.log("Content only created at " + data.created_at);
+
+                    res.writeHead(200, {'content-type': 'text/plain'});
+                    res.write("Posted Status at  : " + data.created_at + " : Post was successful");
+                    res.end("");
 
 
-     var b64content = fs.readFileSync('/path/to/img', { encoding: 'base64' })
+                });
 
-     // first we must post the media to Twitter
-     T.post('media/upload', { media_data: b64content }, function (err, data, response) {
-     // now we can assign alt text to the media, for use by screen readers and
-     // other text-based presentations and interpreters
-     var mediaIdStr = data.media_id_string
-     var altText = "Small flowers in a planter on a sunny balcony, blossoming."
-     var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
+            }
 
-     T.post('media/metadata/create', meta_params, function (err, data, response) {
-     if (!err) {
-     // now we can reference the media and post a tweet (media will attach to the tweet)
-     var params = { status: 'loving life #nofilter', media_ids: [mediaIdStr] }
 
-     T.post('statuses/update', params, function (err, data, response) {
-     console.log(data)
-     })
-     }
-     })
-     })
 
-     //
-     // post media via the chunked media upload API.
-     // You can then use POST statuses/update to post a tweet with the media attached as in the example above using `media_id_string`.
-     // Note: You can also do this yourself manually using T.post() calls if you want more fine-grained
-     // control over the streaming. Example: https://github.com/ttezel/twit/blob/master/tests/rest_chunked_upload.js#L20
-     //
-     var filePath = '/absolute/path/to/file.mp4'
-     T.postMediaChunked({ file_path: filePath }, function (err, data, response) {
-     console.log(data)
-     })
 
-     */
+            ///////////// POST IMAGE ////////////////
+
+            if (imagePath.length > 0 && videoTmpPath.length == 0)
+            {
+
+                var b64content = fs.readFileSync(imagePath, {encoding: 'base64'});
+
+
+
+                // first we must post the media to Twitter
+                T.post('media/upload', {media_data: b64content}, function (err, data, response) {
+
+                    //console.log("err :" + err + "    data : " + data + "     response : " + response);
+
+
+                    if (!err) {
+
+
+
+
+                        // now we can assign alt text to the media, for use by screen readers and
+                        // other text-based presentations and interpreters
+                        var mediaIdStr = data.media_id_string;
+                        var altText = imageAltText;
+                        var meta_params = {media_id: mediaIdStr, alt_text: {text: altText}};
+                        //var content_param = {statusContent: content};
+
+
+                        T.post('media/metadata/create', meta_params, function (err, data, response)
+                        {
+
+                            //console.log("err :" + err + "    data : " + data + "    response : " + response);
+
+                            if (!err)
+                            {
+
+                                // now we can reference the media and post a tweet (media will attach to the tweet)
+                                var params = {status: content, media_ids: [mediaIdStr]}
+
+                                T.post('statuses/update', params, function (err, data, response) {
+                                    console.log("Image and Content created at " + data.created_at);
+
+                                    res.writeHead(200, {'content-type': 'text/plain'});
+                                    res.write("Posted Image and Status at  : " + data.created_at);
+                                    res.end("");
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+
+
+
+
+            ///////////// POST VIDEO ////////////////
+
+             //
+             // post media via the chunked media upload API.
+             // You can then use POST statuses/update to post a tweet with the media attached as in the example above using `media_id_string`.
+             // Note: You can also do this yourself manually using T.post() calls if you want more fine-grained
+             // control over the streaming. Example: https://github.com/ttezel/twit/blob/master/tests/rest_chunked_upload.js#L20
+             //
+            if (imagePath.length == 0 && videoTmpPath.length > 0)
+            {
+
+                fs.createReadStream(videoTmpPath)
+                    .pipe(fs.createWriteStream(videoLocalPath))
+                    .on('error', function(){})
+                    .on('finish', function() {
+
+                        postVideoToTwitter();
+
+                    });
+
+
+
+                function postVideoToTwitter()
+                {
+                    T.postMediaChunked({file_path: videoLocalPath}, function (err, data, response) {
+
+                        if (!err) {
+
+                            var videoIdStr = data.media_id_string;
+
+
+                            var params = {status: content, media_ids: videoIdStr};
+
+                            T.post('statuses/update', params, function (err, data, response)
+                            {
+                                console.log("Video and Content created at " + data.created_at);
+
+                                res.writeHead(200, {'content-type': 'text/plain'});
+                                res.write("Posted Video and Status at  : " + data.created_at);
+                                res.end("");
+                            })
+
+                        }
+                    })
+                }
+
+            }
+
+        }
+
+
+
+    }  // END OF TWITTER PUBLISH
+
+
+
+
 
 
 
