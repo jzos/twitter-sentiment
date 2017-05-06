@@ -9,6 +9,9 @@ var app                     = express();
 var Twit                    = require('twit');
 var bodyParser              = require('body-parser');
 var fs                      = require("fs");
+var csv                     = require("fast-csv");
+var winston                 = require('winston');
+var download                = require('image-downloader')
 
 /*
 *
@@ -20,13 +23,21 @@ var formidable              = require('formidable'),
                             http = require('http'),
                             util = require('util');
 
+var arrayAuto = [];
+var iWatch    = null;
 
 
+function saveLog(sLog, sErrorMessage)
+{
+    winston.add(winston.transports.File, { filename: 'error-log/api-main.log' });
+    winston.log('info', sLog);
+    winston.error(sErrorMessage);
+}
 
 
 
 app.set('port', process.env.PORT || 5005);
-app.set('host', process.env.HOST || 'platform.symamp.com');
+app.set('host', process.env.HOST || 'localhost');
 
 app.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('host') + ':' + app.get('port'));
@@ -97,7 +108,7 @@ app.get('/api/complaint-stream', function (req, res, next) {
 
 
 /*
-*  POST TO SOCIAL CHANNELS
+*  POST TO SOCIAL CHANNELS ////////////////////////////////////////////////
 */
 
 
@@ -125,9 +136,11 @@ var server = http.createServer(function(req, res) {
         var sImgPath            = "";
         var sImgAltText         = "";
         var sVideoTmpPath       = "";
-
         var sVideoLocalPath     = "";
-        var videoTmpDir         = (require('path').dirname(Object.keys(require.cache)[0])).replace("api","tmp-video/");
+        var sCSVTmpPath         = "";
+        var sCSVLocalPath       = "";
+
+        var fileTmpDir          = (require('path').dirname(Object.keys(require.cache)[0])).replace("api","tmp-files/");
 
 
 
@@ -161,7 +174,13 @@ var server = http.createServer(function(req, res) {
             if (name == "publish_video" && file.name.length > 0)
             {
                 sVideoTmpPath       = file.path;
-                sVideoLocalPath     = videoTmpDir + file.name;
+                sVideoLocalPath     = fileTmpDir + file.name;
+            }
+
+            if (name == "publish_csv" && file.name.length > 0)
+            {
+                sCSVTmpPath         = file.path;
+                sCSVLocalPath       = fileTmpDir + file.name;
             }
         });
 
@@ -171,11 +190,13 @@ var server = http.createServer(function(req, res) {
 
             //console.log(util.inspect({fields: fields, files: files}));
 
-            postToTwitter(sContent, sImgPath, sImgAltText, sVideoTmpPath, sVideoLocalPath, res);
+            postToTwitter(sContent, sImgPath, sImgAltText, sVideoTmpPath, sVideoLocalPath, sCSVTmpPath, sCSVLocalPath, res);
 
 
 
         });
+
+
 
 
 
@@ -188,12 +209,9 @@ var server = http.createServer(function(req, res) {
          *
          */
 
-        function postToTwitter(content, imagePath, imageAltText, videoTmpPath, videoLocalPath, response)
+        function postToTwitter(content, imagePath, imageAltText, videoTmpPath, videoLocalPath, csvTmpPath, csvLocalPath, response)
         {
 
-
-
-            //console.log("  Content : " + content.length + "    Image Path: " + imagePath.length + "     Video Path: " + videoPath.length);
 
             var T = new Twit({
                 consumer_key: 'f0ySOZ0qUE3hBoOCfNnmDlOD1',
@@ -327,6 +345,153 @@ var server = http.createServer(function(req, res) {
 
             }
 
+
+            ///////////// POST CSV ///////////////////
+
+            if (csvTmpPath.length > 0)
+            {
+
+                /***** TODO : Put this in utilities ******/
+
+                fs.createReadStream(csvTmpPath)
+                .pipe(fs.createWriteStream(csvLocalPath))
+                .on('error', function(){})
+                .on('finish', function() {
+
+                    LoadCSV(csvLocalPath);
+
+                });
+
+                function LoadCSV(sCSVFileName)
+                {
+                    var iFileCount = 0;
+
+
+                    csv
+                    .fromPath(sCSVFileName)
+                    .on("data", function(data){
+
+                        if (iFileCount > 0 && iFileCount < 5)
+                        {
+                            saveImages(data[0], data[4]);
+                        }
+
+                        iFileCount++;
+
+                    })
+                    .on("end", function(){
+
+                        saveLog("csv file loaded","none");
+
+                        var iWatch = setTimeout(checkImagesSaved, 1000);
+
+
+                    });
+                }
+
+
+
+                function saveImages(sContent, sURLFile)
+                {
+
+                        var options = {
+                            url: sURLFile,
+                            dest: fileTmpDir
+                        }
+
+                        download.image(options)
+                            .then(function(filename, image){
+                            //console.log('File saved to', filename.filename);
+                                arrayAuto.push({"content": sContent, "file": filename.filename});
+
+                        }).
+                        catch(function(err) {
+                            throw err
+                        })
+
+                }
+
+
+                function checkImagesSaved()
+                {
+                    if (arrayAuto.length > 0)
+                    {
+                        clearTimeout(iWatch);
+                        postBatchFiles();
+                    }
+                }
+
+
+                function postBatchFiles()
+                {
+
+
+
+                    for (var i in arrayAuto)
+                    {
+                        postContentImageTwitter(arrayAuto[i].content, arrayAuto[i].file);
+                    }
+
+                    res.writeHead(200, {'content-type': 'text/plain'});
+                    res.write("Posted Multiple Image and Statuses");
+                    res.end("");
+
+                }
+
+
+
+                function postContentImageTwitter(content, imagePath)
+                {
+
+                    var b64content = fs.readFileSync(imagePath, {encoding: 'base64'});
+
+
+
+                    // first we must post the media to Twitter
+                    T.post('media/upload', {media_data: b64content}, function (err, data, response) {
+
+                        if (!err) {
+
+                            // now we can assign alt text to the media, for use by screen readers and
+                            // other text-based presentations and interpreters
+                            var mediaIdStr = data.media_id_string;
+                            var altText = content;
+                            var meta_params = {media_id: mediaIdStr, alt_text: {text: altText}};
+                            //var content_param = {statusContent: content};
+
+
+                            T.post('media/metadata/create', meta_params, function (err, data, response)
+                            {
+
+                                //console.log("err :" + err + "    data : " + data + "    response : " + response);
+
+                                if (!err)
+                                {
+
+                                    // now we can reference the media and post a tweet (media will attach to the tweet)
+                                    var params = {status: content, media_ids: [mediaIdStr]}
+
+                                    T.post('statuses/update', params, function (err, data, response) {
+                                        console.log("Image and Content created at " + data.created_at);
+
+
+
+                                    })
+                                }
+                                else
+                                {
+                                    res.writeHead(200, {'content-type': 'text/plain'});
+                                    res.write("Images and Content were not posted");
+                                    res.end("");
+                                }
+                            })
+                        }
+                    })
+                }
+
+            }
+
+
         }
 
 
@@ -334,7 +499,7 @@ var server = http.createServer(function(req, res) {
     }  // END OF TWITTER PUBLISH
 
 
-}).listen(5006, 'platform.symamp.com');
+}).listen(5006);
 
 
 

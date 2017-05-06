@@ -18,6 +18,7 @@ html body {
   /* CREATE DASHBOARD */
   /* SEGMENT DASHBOARDS */
   /* CUSTOMER SERVICE */
+  /* PUBLISH */
 }
 html body .container {
   width: 100%;
@@ -798,4 +799,37 @@ html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb:h
 html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb:active {
   background-color: #78a4fa;
   border: 1px solid #78a4fa;
+}
+html body #publish-post .segment-fields label {
+  color: #78a4fa;
+}
+html body #publish-post .segment-fields .file-preview {
+  border: 1px solid #3d1396;
+}
+html body #publish-post .segment-fields .file-preview .close {
+  float: right;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  color: #78a4fa;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+html body #publish-post .input-group .form-control {
+  background: #23075c !important;
+  border: 1px solid #3d1396;
+  color: #78a4fa;
+}
+html body #publish-post input[type=file]::-webkit-input-placeholder {
+  color: #5d2ad4;
+}
+html body #publish-post input[type=file]:-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #publish-post input[type=file]::-moz-placeholder {
+  color: #5d2ad4;
+}
+html body #publish-post input[type=file]:-ms-input-placeholder {
+  color: #5d2ad4;
 }

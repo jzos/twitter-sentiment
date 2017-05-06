@@ -7,7 +7,7 @@
 </div>
 
 <!--<form name="form" method="post" enctype="multipart/form-data" action="api/twitter-publish" role="form" class="form">-->
-<form ng-submit="submitForm()">
+<form ng-submit="submitForm()" id="publish-post">
 
 <div id="create-dashboard-section">
 
@@ -33,7 +33,7 @@
 
 
         <div class="form-group" id="publish-image-container">
-
+            <label>Upload Image</label>
             <input id="publish-image" class="file"  type="file" name="publish_image" placeholder="Upload Image">
             <script>
                 $("#publish-image").fileinput({
@@ -49,7 +49,8 @@
         </div>
 
         <div class="form-group" id="publish-video-container">
-            <input  type="file" id="publish-video" class="file" name="publish_video" placeholder="Upload Video" ng-model="user.video">
+            <label>Upload Video</label>
+            <input type="file" id="publish-video" class="file" name="publish_video" placeholder="Upload Image" ng-model="user.video">
 
             <script>
                 $("#publish-video").fileinput({
@@ -61,9 +62,24 @@
 
         </div>
 
+
+        <div class="form-group" id="publish-csv-container">
+            <label>Upload CSV</label>
+            <input type="file" id="publish-csv" class="file" name="publish_csv" placeholder="Upload Video" ng-model="user.video">
+
+            <script>
+                $("#publish-csv").fileinput({
+                    allowedFileExtensions: ["csv"],
+                    showUpload: false,
+                    dropZoneTitle: "Drag and drop videos here"
+                })
+            </script>
+
+        </div>
+
         <div class="form-group">
 
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Publish Post</button>
 
         </div>
 
