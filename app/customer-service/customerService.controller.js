@@ -17,7 +17,7 @@
 
         function loadComplaintStream()
         {
-            RequestAPI.loadURL("http://platform.symamp.com:5005/api/complaint-stream", populateComplaintStream, failureCallback);
+            RequestAPI.loadURL("http://" + $rootScope.hostname + ":5005/api/complaint-stream", populateComplaintStream, failureCallback);
             Utilities.watchBinding("populateComplaintStream", populateComplaintStream, 3000, $scope, $timeout);
         }
 

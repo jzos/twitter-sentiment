@@ -24,7 +24,7 @@
             /** TODO : Put this in the requestAPI.js file **/
 
             $.ajax({
-                url: "http://localhost:5006/api/twitter-publish",
+                url: "http://" + $rootScope.hostname + ":5006/api/twitter-publish",
                 type: "POST",
                 data: new FormData(formElement),
                 processData: false,  // tell jQuery not to process the data

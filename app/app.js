@@ -18,7 +18,7 @@
 
         }])
         .run(run)
-        .controller('MainCtrl', ['$scope', MainCtrl]);
+        .controller('MainCtrl', ['$scope','$rootScope', MainCtrl]);
 
 
     config.$inject = ['$routeProvider', '$locationProvider'];
@@ -82,6 +82,8 @@
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
+
+        $rootScope.hostname =  window.location.hostname;
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
