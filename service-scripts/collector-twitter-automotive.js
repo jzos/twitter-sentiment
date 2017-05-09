@@ -4,7 +4,7 @@
 
 var sentiment           = require('sentiment');
 var merge               = require('merge'), original, cloned;
-
+var natural             = require('natural');
 
 var Twit = require('twit');
 
@@ -64,6 +64,10 @@ stream.on('tweet', function (tweet) {
 
     // convert twitter date format to ISODate
     tweet["created_at"] = new Date(Date.parse(date.replace(/( \+)/, ' UTC$1')));
+
+
+    console.log(natural.JaroWinklerDistance(tweet.text,"buy a car"));
+
 
     var r1              = sentiment(tweet.text);
     var dataRecord      = merge(tweet,r1);
