@@ -2,14 +2,16 @@
  * Created by jaimemac on 1/23/17.
  */
 
-var graph = require('fbgraph');
+var graph                   = require('fbgraph');
+var csv                     = require("fast-csv");
 
-// Token for Symamp App
-//graph.setAccessToken('EAAYqNehaZAeIBAKvmTmIEp0Fe5JlwZBJwk6ZBE6NZAnlZB9Lc9tGBVGXAN4Pn0v1FfYpAZANJfwJlQ2NgTXSEZAksBN6VT2T0Tf5WZCndmVfRJc89gPgiCfwpjpbUzEGKQUWEiIvBLEYSoAvhlm8iYu96yjtoDUAh4fcWgRqzbpIKwZDZD');
 
-// Token for Capitol Motors
-//graph.setAccessToken('EAAbtFgSR8MUBAG48q2oEdYsqTYkmBxAQHLA5J10ar2LWYjMuOU1awU3ZAceHS8YxphNLMskpzUazUPMa8TQzZAAKCyfjq6vjhnzAJVEUUyZBvoa8jV04fXZAXvaVomKZB0kvwjiPdkxyhM5LXpuJc');
-graph.setAccessToken('EAACEdEose0cBABNjpRMwUgLkOdqu2R4awh77W68WPRNCUg8tejfIgGqW9OeeJ64S333dAQFl8VZBMBZB51C6S7eBjShjMujvAwzbCcHOjTgkTOCGW0e9TAH3NO7StNLVgAgZBAoVhOXY21pzq8x5q6uIABdfoMrpC3PIEOed89IEXpgpQi1ysji0vvx8jwZD');
+
+var checkFileExisits = null;
+
+
+// Token for Capitol Motors for Facebook App
+graph.setAccessToken('EAAbtFgSR8MUBAOCcwxzOp5RNbBupZBykfnNx8Hp9t030OCQM90CpY55F4IJHtGxwbRcjXf7Js0OjO0lwmV5QDy7RmYX5a6xAgbOcxYu0crZC8pkwkZBtZCsVtOyQ6ySw6uLJKsZALyPJ5qsdLdlZBwuJCjpHXsz0yGQTEAkhl5EAZDZD');
 
 /*
 
@@ -50,14 +52,121 @@ var graphObject = graph
     });
 */
 
-var wallPost = {
-    message: "Chevrolet Tahoe",
-    picture: "http://inventory-dmg.assets-cdk.com/3/0/7/14336113703.jpg",
-    link: "http://www.capitolchevy.com/VehicleDetails/certified-2013-Chevrolet-Tahoe-2WD_1500_LT-Austin-TX/2977415593"
-};
+/*
 
+var wallPost = {
+    message: "Chevrolet Captiva Sport",
+    picture: "http://inventory-dmg.assets-cdk.com/8/5/7/14101861758.jpg",
+    link: "http://www.capitolchevy.com/VehicleDetails/certified-2014-Chevrolet-Captiva_Sport_Fleet-FWD_4dr_LTZ-Austin-TX/2950558043"
+};
+*/
+
+/*
 
 graph.post("/feed", wallPost, function(err, res) {
     // returns the post id
     console.log(res); // { id: xxxxx}
 });
+
+*/
+
+
+
+var fileTmpDir          = (require('path').dirname(Object.keys(require.cache)[0])).replace("service-scripts","tmp-files/");
+var fs = require('fs');
+var request = require('request');
+request('http://www.capcomsoftware.com/downloads/csv/facebook/facebook_Capitol_Chevrolet.csv').pipe(fs.createWriteStream(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'))
+
+
+var checkFileExisits = setInterval(checkImagesSaved, 500);
+
+
+
+function checkImagesSaved() {
+
+    if (fs.existsSync(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'))
+    {
+        clearInterval(checkFileExisits);
+
+        readCSVFile();
+
+    }
+
+}
+
+
+function readCSVFile()
+{
+    var iFileCount = 0;
+
+    csv
+        .fromPath(fileTmpDir + 'facebook_Capitol_Chevrolet.csv')
+        .on("data", function(data){
+
+            if (iFileCount > 0 && iFileCount < 5)
+            {
+                postToFacebook(data[3], data[5], data[4]);
+
+                //console.log("name : " + data[3] + "    Link: " + data[5] + "     Image: " + data[4]);
+
+            }
+
+            iFileCount++;
+
+        })
+        .on("end", function(){
+
+            //saveLog("csv file loaded","none");
+        })
+        /*.on('error', function(error) {
+            console.log("Catch an invalid csv file!!!");
+            //console.log(this);
+            //return res.fail('The csv file is invalid!');
+        });*/
+}
+
+
+
+function postToFacebook(sContent, sLink, sImgURL)
+{
+
+
+    var wallPost = {
+        message: sContent,
+        picture: sImgURL,
+        link: sLink
+    };
+
+    graph.post("/feed", wallPost, function(err, res) {
+        // returns the post id
+        console.log(res); // { id: xxxxx}
+    });
+
+
+}
+
+
+
+//console.log(fs.existsSync(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'));
+
+
+
+
+/*  Possibly use this to solve for invalid csv's
+
+ var csv = require("fast-csv");
+ var byline = require('byline');
+
+ var stream = byline(fs.createReadStream("mydata.csv", { encoding: 'utf8' }));
+ stream.on('data', function(line) {
+ line = line.replace(/\\\"/g, '""');
+
+ csv.fromString(line)
+ .on("data", function (data) {
+ // data
+ })
+ .on("end", function () {
+
+ });
+ });
+ */

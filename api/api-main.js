@@ -178,9 +178,12 @@ var server = http.createServer(function(req, res) {
             }
 
             if (name == "publish_csv" && file.name.length > 0)
-            {
+            {/*
                 sCSVTmpPath         = file.path;
                 sCSVLocalPath       = fileTmpDir + file.name;
+*/
+                sCSVTmpPath         = "http://www.capcomsoftware.com/downloads/csv/facebook/facebook_Capitol_Chevrolet.csv";
+                sCSVLocalPath       = fileTmpDir + "facebook_Capitol_Chevrolet.csv";
             }
         });
 
@@ -383,9 +386,7 @@ var server = http.createServer(function(req, res) {
 
                         saveLog("csv file loaded","none");
 
-                        var iWatch = setTimeout(checkImagesSaved, 1000);
-
-
+                        var iWatch = setTimeout(checkImagesSaved, 2000);
                     });
                 }
 
