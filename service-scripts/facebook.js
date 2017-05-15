@@ -75,7 +75,7 @@ graph.post("/feed", wallPost, function(err, res) {
 var fileTmpDir          = (require('path').dirname(Object.keys(require.cache)[0])).replace("service-scripts","tmp-files/");
 var fs = require('fs');
 var request = require('request');
-request('http://www.capcomsoftware.com/downloads/csv/facebook/facebook_Capitol_Chevrolet.csv').pipe(fs.createWriteStream(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'))
+request('https://www.inventorymonitor.net/fbdynamic/141/Capitol%20Chevrolet.csv').pipe(fs.createWriteStream(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'))
 
 
 var checkFileExisits = setInterval(checkImagesSaved, 500);

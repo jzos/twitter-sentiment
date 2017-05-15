@@ -1,4 +1,8 @@
+html {
+  height: 100vh;
+}
 html body {
+  height: 100%;
   font-family: 'Droid Sans', sans-serif;
   background: url("/img/background3.png") repeat-x;
   /* Gradient
@@ -24,6 +28,7 @@ html body .container {
   width: 100%;
   padding: 0;
   margin: 0;
+  height: auto;
 }
 html body .login-page {
   margin-top: 200px;
@@ -230,8 +235,9 @@ html body #leftNav-section .leftNavigationPage ul li a:hover {
   color: #fff;
 }
 html body #rightNav-section {
-  position: fixed;
-  right: 0px;
+  position: relative;
+  float: right;
+  clear: none;
   width: 220px;
   border-left: 1px solid #3d1396;
   /*
@@ -255,9 +261,10 @@ html body #rightNav-section {
   /* BOOKMARKS */
 }
 html body #rightNav-section .bookmarksNav .bookmarks h5 {
-  margin-top: 20px;
   text-align: center;
   color: #78a4fa;
+  margin-top: 0;
+  padding-top: 15px;
 }
 html body #rightNav-section .bookmarksNav .bookmarks .date-dropdown {
   text-align: center;
@@ -298,11 +305,58 @@ html body #rightNav-section .bookmarksNav .bookmarks .button-save-holder {
   float: left;
   width: 100%;
 }
-html body #create-dashboard-section {
-  margin-left: 293px;
+html body #rightNav-section .filtersNav .bookmarks h5 {
+  text-align: center;
+  color: #78a4fa;
+  margin-top: 0;
+  padding-top: 15px;
+}
+html body #rightNav-section .filtersNav .bookmarks .date-dropdown {
+  text-align: center;
+  z-index: 500;
+}
+html body #rightNav-section .filtersNav .bookmarks .date-dropdown li {
+  text-align: left;
+}
+html body #rightNav-section .filtersNav .bookmarks ul {
   margin-top: 10px;
-  position: absolute;
-  width: calc(100% - 600px);
+  padding-left: 10px;
+}
+html body #rightNav-section .filtersNav .bookmarks ul li.source-icons {
+  border: 1px solid #3d1396;
+  border-radius: 50px;
+  width: 45px;
+  list-style: none;
+  color: #78a4fa;
+  float: left;
+  margin: 10px;
+}
+html body #rightNav-section .filtersNav .bookmarks ul li.source-icons [class^="icon-"]:before,
+html body #rightNav-section .filtersNav .bookmarks ul li.source-icons [class*=" icon-"]:before {
+  width: 45px;
+  text-align: left;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin: 10px;
+  font-size: 23px;
+  vertical-align: -4px;
+  color: #78a4fa;
+}
+html body #rightNav-section .filtersNav .bookmarks .button-save-holder {
+  text-align: center;
+  margin-top: 20px;
+  float: left;
+  width: 100%;
+}
+html body #create-dashboard-section {
+  margin-top: 15px;
+  margin-left: 28px;
+  position: relative;
+  float: left;
+  width: calc(100% - 500px);
+  height: 100%;
 }
 html body #create-dashboard-section h2 {
   text-align: center;
@@ -349,7 +403,7 @@ html body #create-dashboard-section .segment-fields textarea {
 html body #create-dashboard-section #signup-container {
   width: 100%;
   height: auto;
-  position: absolute;
+  position: relative;
   text-align: justify;
   margin-bottom: 40px;
 }
@@ -799,6 +853,36 @@ html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb:h
 html body #customer-service-section #scrollbar-custom::-webkit-scrollbar-thumb:active {
   background-color: #78a4fa;
   border: 1px solid #78a4fa;
+}
+html body #publish-post .segment-fields-social {
+  text-align: center;
+}
+html body #publish-post .segment-fields-social .social-publish-list {
+  margin: 10px 0 0 0;
+  padding-left: 10px;
+  display: inline-block;
+}
+html body #publish-post .segment-fields-social .social-publish-list li.source-icons {
+  border: 1px solid #3d1396;
+  border-radius: 50px;
+  width: 45px;
+  list-style: none;
+  color: #78a4fa;
+  float: left;
+  margin: 10px;
+}
+html body #publish-post .segment-fields-social .social-publish-list li.source-icons [class^="icon-"]:before,
+html body #publish-post .segment-fields-social .social-publish-list li.source-icons [class*=" icon-"]:before {
+  width: 45px;
+  text-align: left;
+  /* opacity: .8; */
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin: 10px;
+  font-size: 23px;
+  vertical-align: -4px;
+  color: #78a4fa;
 }
 html body #publish-post .segment-fields label {
   color: #78a4fa;

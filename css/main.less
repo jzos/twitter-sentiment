@@ -4,12 +4,12 @@
 html
 {
 
-
+  height:100vh;
 
 
   body
   {
-
+    height: 100%;
     font-family: 'Droid Sans', sans-serif;
     //background: #330779;
     background: url("/img/background3.png") repeat-x;
@@ -30,6 +30,7 @@ html
       width: 100%;
       padding: 0;
       margin: 0;
+      height: auto;
     }
 
 
@@ -356,8 +357,9 @@ html
 
     #rightNav-section
     {
-      position: fixed;
-      right: 0px;
+      position: relative;
+      float: right;
+      clear: none;
       width: 220px;
       border-left: 1px solid @lightPurple;
       //background: @blueDark;
@@ -395,9 +397,91 @@ html
 
           h5
           {
-            margin-top: 20px;
             text-align: center;
             color: @blueLight;
+            margin-top: 0;
+            padding-top: 15px;
+          }
+
+          .date-dropdown
+          {
+            text-align: center;
+            z-index: 500;
+
+            li
+            {
+              text-align: left;
+            }
+
+          }
+
+
+
+          ul
+          {
+
+            margin-top: 10px;
+            padding-left: 10px;
+
+            li.source-icons
+            {
+
+
+
+              border: 1px solid @lightPurple;
+              border-radius: 50px;
+              width: 45px;
+              list-style: none;
+              color: @blueLight;
+              float: left;
+              margin: 10px;
+
+
+              [class^="icon-"]:before, [class*=" icon-"]:before {
+                width: 45px;
+                text-align: left;
+                /* opacity: .8; */
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1em;
+                margin: 10px;
+                font-size: 23px;
+                vertical-align: -4px;
+                //text-shadow: 3px 3px 1px rgba(224, 91, 112, 0.3);
+                color: #78a4fa;
+              }
+
+              //text-shadow: 3px 3px 1px rgba(147, 180, 250, 0.3);
+            }
+
+          }
+
+          .button-save-holder
+          {
+            text-align: center;
+            margin-top: 20px;
+            float: left;
+            width: 100%;
+          }
+
+        }
+
+      }
+
+
+      .filtersNav
+      {
+
+        .bookmarks
+        {
+
+
+          h5
+          {
+            text-align: center;
+            color: @blueLight;
+            margin-top: 0;
+            padding-top: 15px;
           }
 
           .date-dropdown
@@ -472,10 +556,12 @@ html
 
     #create-dashboard-section
     {
-      margin-left: 293px;
-      margin-top: 10px;
-      position: absolute;
-      width: calc(~'100% - 600px');
+      margin-top: 15px;
+      margin-left: 28px;
+      position: relative;
+      float: left;
+      width: calc(~'100% - 500px');
+      height: 100%;
 
       h2
       {
@@ -568,7 +654,7 @@ html
       {
         width: 100%;
         height: auto;
-        position: absolute;
+        position: relative;
         text-align: justify;
         margin-bottom: 40px;
 
@@ -1256,12 +1342,71 @@ html
     {
 
 
+
+      .segment-fields-social
+      {
+
+        text-align: center;
+
+        .social-publish-list
+        {
+
+          margin: 10px 0 0 0;
+          padding-left: 10px;
+          display: inline-block;
+
+
+          li.source-icons
+          {
+
+
+
+            border: 1px solid @lightPurple;
+            border-radius: 50px;
+            width: 45px;
+            list-style: none;
+            color: @blueLight;
+            float: left;
+            margin: 10px;
+
+
+            [class^="icon-"]:before, [class*=" icon-"]:before {
+              width: 45px;
+              text-align: left;
+              /* opacity: .8; */
+              font-variant: normal;
+              text-transform: none;
+              line-height: 1em;
+              margin: 10px;
+              font-size: 23px;
+              vertical-align: -4px;
+              //text-shadow: 3px 3px 1px rgba(224, 91, 112, 0.3);
+              color: #78a4fa;
+            }
+
+            //text-shadow: 3px 3px 1px rgba(147, 180, 250, 0.3);
+          }
+
+
+
+
+        }
+      }
+
+
+
       .segment-fields
       {
         label
         {
           color: @blueLight;
         }
+
+
+
+
+
+
 
         .file-preview
         {
