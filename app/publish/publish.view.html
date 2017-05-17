@@ -1,3 +1,101 @@
+<!--
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1735260880135650',
+            xfbml      : true,
+            version    : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+
+
+        /*FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                console.log('Logged in.');
+            }
+            else {
+                FB.login();
+            }
+        });*/
+
+        /*function myFacebookLogin() {
+            FB.login(function(){}, {scope: 'publish_actions'});
+        }*/
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+
+        function statusChangeCallback(resp)
+        {
+            console.log(resp);
+        }
+
+        FB.login();
+
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+
+
+
+</script>-->
+
+
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1735260880135650',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function(response) {
+
+            if (response.status != "connected")
+            {
+                FB.login(function(){}, {scope: 'publish_actions'});
+            }
+            else
+            {
+                console.log(response);
+            }
+
+
+        });
+
+
+
+
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+
 
 <div id="header-section">
     <ng-include src="'/app/header/header.view.html'"></ng-include>
