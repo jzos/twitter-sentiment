@@ -3,6 +3,7 @@
  */
 
 var graph                   = require('fbgraph');
+// https://www.npmjs.com/package/fast-csv
 var csv                     = require("fast-csv");
 
 
@@ -75,16 +76,16 @@ graph.post("/feed", wallPost, function(err, res) {
 var fileTmpDir          = (require('path').dirname(Object.keys(require.cache)[0])).replace("service-scripts","tmp-files/");
 var fs = require('fs');
 var request = require('request');
-request('https://www.inventorymonitor.net/fbdynamic/141/Capitol%20Chevrolet.csv').pipe(fs.createWriteStream(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'))
+request('https://www.inventorymonitor.net/fbdynamic/444/Woods%20Fun%20Center.csv').pipe(fs.createWriteStream(fileTmpDir + 'facebook_woods_fun_center.csv'))
 
 
-var checkFileExisits = setInterval(checkImagesSaved, 500);
+var checkFileExisits = setInterval(checkImagesSaved, 2000);
 
 
 
 function checkImagesSaved() {
 
-    if (fs.existsSync(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'))
+    if (fs.existsSync(fileTmpDir + 'facebook_woods_fun_center.csv'))
     {
         clearInterval(checkFileExisits);
 
@@ -97,17 +98,17 @@ function checkImagesSaved() {
 
 function readCSVFile()
 {
-    var iFileCount = 0;
+    var iFileCount = 1;
 
     csv
-        .fromPath(fileTmpDir + 'facebook_Capitol_Chevrolet.csv')
+        .fromPath(fileTmpDir + "facebook_woods_fun_center.csv", {headers : true})
         .on("data", function(data){
 
-            if (iFileCount > 0 && iFileCount < 5)
+            if (iFileCount < 10)
             {
-                postToFacebook(data[3], data[5], data[4]);
 
-                //console.log("name : " + data[3] + "    Link: " + data[5] + "     Image: " + data[4]);
+                console.log(data);
+                postToFacebook(data.description, data.link, data.image_link.split("https").join("http"));
 
             }
 
@@ -115,14 +116,14 @@ function readCSVFile()
 
         })
         .on("end", function(){
-
+            console.log("end");
             //saveLog("csv file loaded","none");
         })
-        /*.on('error', function(error) {
+        .on("error", function(error) {
             console.log("Catch an invalid csv file!!!");
             //console.log(this);
             //return res.fail('The csv file is invalid!');
-        });*/
+        });
 }
 
 
@@ -130,11 +131,12 @@ function readCSVFile()
 function postToFacebook(sContent, sLink, sImgURL)
 {
 
-
     var wallPost = {
         message: sContent,
         picture: sImgURL,
         link: sLink
+
+
     };
 
     graph.post("/feed", wallPost, function(err, res) {
@@ -146,27 +148,3 @@ function postToFacebook(sContent, sLink, sImgURL)
 }
 
 
-
-//console.log(fs.existsSync(fileTmpDir + 'facebook_Capitol_Chevrolet.csv'));
-
-
-
-
-/*  Possibly use this to solve for invalid csv's
-
- var csv = require("fast-csv");
- var byline = require('byline');
-
- var stream = byline(fs.createReadStream("mydata.csv", { encoding: 'utf8' }));
- stream.on('data', function(line) {
- line = line.replace(/\\\"/g, '""');
-
- csv.fromString(line)
- .on("data", function (data) {
- // data
- })
- .on("end", function () {
-
- });
- });
- */
